@@ -908,7 +908,8 @@ let dbState = {
   team: {},
   password: 'admin00', // Default fallback
   customConfig: null,
-  themeAccent: 'lime'
+  themeAccent: 'lime',
+  activityLogs: []
 };
 
 let firebaseCallbacks = {};
@@ -972,6 +973,8 @@ window.initFirebaseProxy = function () {
         handleTeamUpdate(val);
       } else if (key === 'themeAccent') {
         applyThemeAccent(val);
+      } else if (key === 'activityLogs') {
+        renderActivityLogs(val);
       } else if (key === 'customConfig') {
         // If Firebase active config is not ready yet, ignore initial load updates
         if (!window.activeFirebaseConfig) {
@@ -1244,6 +1247,13 @@ function injectAdminModals() {
               </select>
             </div>
           </div>
+
+          <div style="background: rgba(255,255,255,0.02); padding: 20px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.04); margin-bottom: 20px;">
+            <h4 style="color:#fff; margin-bottom:15px; font-size:0.9rem; font-family:var(--font-mono); text-transform:uppercase; color: var(--neon-cyan);">system activity log</h4>
+            <div id="admin-activity-logs" style="font-family: var(--font-mono); font-size: 0.8rem; line-height: 1.4; color: var(--text-secondary);">
+              <!-- Dynamically populated -->
+            </div>
+          </div>
         </div>
 
         <!-- Tab: Team Management -->
@@ -1398,6 +1408,7 @@ function showAdminDashboard() {
     if (appIdField) appIdField.value = active.appId || '';
 
     renderAdminTeamList();
+    renderActivityLogs(dbState.activityLogs);
     switchAdminTab('tab-settings');
   }
 }
@@ -1543,6 +1554,28 @@ function renderAdminTeamList() {
         <button class="delete" onclick="deleteTeamMember('${key}')">Delete</button>
       </div>
     `;
+    container.appendChild(div);
+  });
+}
+
+function renderActivityLogs(logs) {
+  const container = document.getElementById('admin-activity-logs');
+  if (!container) return;
+
+  container.innerHTML = '';
+  const logArray = logs || dbState.activityLogs || [];
+
+  if (logArray.length === 0) {
+    container.innerHTML = '<div style="color: var(--text-tertiary); font-size:0.8rem; font-family: var(--font-mono);">No recent activities logged.</div>';
+    return;
+  }
+
+  logArray.forEach(log => {
+    const div = document.createElement('div');
+    div.style.marginBottom = '6px';
+    div.style.borderBottom = '1px solid rgba(255,255,255,0.02)';
+    div.style.paddingBottom = '4px';
+    div.innerHTML = `<span style="color: var(--neon-green); margin-right: 8px;">[${log.timestamp || ''}]</span> <span>${log.text || ''}</span>`;
     container.appendChild(div);
   });
 }
