@@ -307,9 +307,10 @@ a {
   transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.nav-pill-wrapper.reveal.in {
+.nav-pill-wrapper.reveal.in,
+.nav-pill-wrapper.reveal.active {
   opacity: 1;
-  transform: translate(-50%, 0);
+  transform: translate(-50%, 0) scale(1);
 }
 
 .nav-pill {
@@ -323,6 +324,18 @@ a {
   -webkit-backdrop-filter: blur(24px);
   border: 1px solid rgba(255, 255, 255, 0.06);
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+@media (max-width: 767px) {
+  .nav-pill {
+    justify-content: center;
+    position: relative;
+    padding: 8px 16px;
+  }
+  .nav-burger {
+    position: absolute;
+    right: 16px;
+  }
 }
 
 .nav-brand {
