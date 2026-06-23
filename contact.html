@@ -7,15 +7,26 @@
   <meta name="description" content="Get in touch with ZephyrDevs to build your next web application. Fill out our interactive project planner and connect with us directly.">
   <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="loading-active">
+  <!-- Grain Overlay -->
+  <div class="grain"></div>
 
-  <!-- Loading Screen -->
-  <div id="loading-screen" class="loading-screen">
-    <div class="loader-logo-wrapper">
-      <div class="loader-ring"></div>
-      <img src="zephyrlogo.jpg" alt="ZephyrDevs Logo" class="loader-logo">
-    </div>
-    <div style="font-family: var(--font-title); font-size: 1rem; font-weight: 700; color: #ffffff; letter-spacing: 0.1em; margin-top: 10px;">ZEPHYR<span>DEVS</span></div>
+  <!-- Aurora Backdrop Gradients -->
+  <div class="aurora">
+    <i class="a1"></i>
+    <i class="a2"></i>
+    <i class="a3"></i>
+    <div class="beam"></div>
+  </div>
+
+  <!-- Custom Interactive Cursor -->
+  <div class="cursor-dot"></div>
+  <div class="cursor-ring"></div>
+
+  <!-- Cinematic Intro Gate (Fast Curtain Transition) -->
+  <div id="intro-gate" class="intro-gate fast-loader">
+    <div class="intro-curtain-top"></div>
+    <div class="intro-curtain-bottom"></div>
   </div>
 
   <!-- Glowing Cursor Flashlight Spotlight -->
@@ -241,7 +252,7 @@
       </div>
     </div>
     <div class="container footer-bottom">
-      <div>&copy; 2026 ZephyrDevs. All rights reserved. Made with &hearts; by Akshansh, Aarav & Arshh.</div>
+      <div>&copy; 2026 ZephyrDevs. All rights reserved. Made with &hearts; by Akshansh, Aarav & Arshh. | <a href="#" onclick="openAdminPanel(event)" style="color: var(--text-tertiary); text-decoration: none; font-family: var(--font-mono); font-size: 0.75rem; margin-left: 5px;">[Admin Portal]</a></div>
       <div class="footer-social-icons">
         <a href="https://instagram.com/zephyrdevs" target="_blank" rel="noopener" aria-label="Instagram">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>

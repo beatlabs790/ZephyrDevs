@@ -7,15 +7,26 @@
   <meta name="description" content="View transparent pricing plans by ZephyrDevs: Free, ₹199 Pro, and ₹399 Enterprise plans tailored to your design, backend, and AI pipeline needs.">
   <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="loading-active">
+  <!-- Grain Overlay -->
+  <div class="grain"></div>
 
-  <!-- Loading Screen -->
-  <div id="loading-screen" class="loading-screen">
-    <div class="loader-logo-wrapper">
-      <div class="loader-ring"></div>
-      <img src="zephyrlogo.jpg" alt="ZephyrDevs Logo" class="loader-logo">
-    </div>
-    <div style="font-family: var(--font-title); font-size: 1rem; font-weight: 700; color: #ffffff; letter-spacing: 0.1em; margin-top: 10px;">ZEPHYR<span>DEVS</span></div>
+  <!-- Aurora Backdrop Gradients -->
+  <div class="aurora">
+    <i class="a1"></i>
+    <i class="a2"></i>
+    <i class="a3"></i>
+    <div class="beam"></div>
+  </div>
+
+  <!-- Custom Interactive Cursor -->
+  <div class="cursor-dot"></div>
+  <div class="cursor-ring"></div>
+
+  <!-- Cinematic Intro Gate (Fast Curtain Transition) -->
+  <div id="intro-gate" class="intro-gate fast-loader">
+    <div class="intro-curtain-top"></div>
+    <div class="intro-curtain-bottom"></div>
   </div>
 
   <!-- Glowing Cursor Flashlight Spotlight -->
@@ -65,9 +76,9 @@
   <main class="container" style="padding-top: 180px; padding-bottom: 100px;">
     <!-- Page Header -->
     <div class="section-header reveal">
-      <span class="section-subtitle">Fair pricing</span>
-      <h1 class="section-title">Transparent Plans</h1>
-      <p>Whether you're testing out a fresh concept or building an enterprise system, we have a structure built for you.</p>
+      <span class="section-subtitle">04 / pricing</span>
+      <h1 class="section-title">a subscription, not a quotation.</h1>
+      <p>Flat project rate. No scope negotiations, no hourly billing, no surprises. Pause when you're ahead, cancel when you're done.</p>
     </div>
 
     <!-- Pricing Cards Grid -->
@@ -77,7 +88,8 @@
         <div>
           <h3 class="plan-name">Free</h3>
           <p class="plan-desc">Perfect for small open-source ideas, portfolio templates, and personal hobbies.</p>
-          <div class="plan-price">₹0<span>/ project</span></div>
+          <div class="plan-price" style="margin-bottom: 4px;">₹0<span>/ project</span></div>
+          <div style="font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; margin-bottom: 24px; letter-spacing: 0.05em;">* depending on domain name</div>
         </div>
         <ul class="plan-features">
           <li>
@@ -113,7 +125,8 @@
         <div>
           <h3 class="plan-name">Pro</h3>
           <p class="plan-desc">For startups and professional projects needing reliable database pipelines and AI aids.</p>
-          <div class="plan-price">₹199<span>/ project</span></div>
+          <div class="plan-price" style="margin-bottom: 4px;">₹199<span>/ project</span></div>
+          <div style="font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; margin-bottom: 24px; letter-spacing: 0.05em;">* depending on domain name</div>
         </div>
         <ul class="plan-features">
           <li>
@@ -149,7 +162,8 @@
         <div>
           <h3 class="plan-name">Enterprise</h3>
           <p class="plan-desc">For complex apps requiring dual-LLM systems, high database throughput, and priority access.</p>
-          <div class="plan-price">₹399<span>/ project</span></div>
+          <div class="plan-price" style="margin-bottom: 4px;">₹399<span>/ project</span></div>
+          <div style="font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; margin-bottom: 24px; letter-spacing: 0.05em;">* depending on domain name</div>
         </div>
         <ul class="plan-features">
           <li>
@@ -179,6 +193,11 @@
         </ul>
         <button class="btn btn-secondary" onclick="navigateTo('contact.html?plan=enterprise')">Select Enterprise Plan</button>
       </div>
+    </div>
+
+    <!-- All Plans Note -->
+    <div style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted); text-align: center; text-transform: uppercase; margin-top: 36px; margin-bottom: 56px; letter-spacing: 0.08em; line-height: 1.6;">
+      all plans: GST invoice &middot; IP is yours &middot; code in your GitHub repos from day one &middot; no lock-in
     </div>
 
     <!-- Pricing Comparison Table -->
@@ -281,7 +300,7 @@
       </div>
     </div>
     <div class="container footer-bottom">
-      <div>&copy; 2026 ZephyrDevs. All rights reserved. Made with &hearts; by Akshansh, Aarav & Arshh.</div>
+      <div>&copy; 2026 ZephyrDevs. All rights reserved. Made with &hearts; by Akshansh, Aarav & Arshh. | <a href="#" onclick="openAdminPanel(event)" style="color: var(--text-tertiary); text-decoration: none; font-family: var(--font-mono); font-size: 0.75rem; margin-left: 5px;">[Admin Portal]</a></div>
       <div class="footer-social-icons">
         <a href="https://instagram.com/zephyrdevs" target="_blank" rel="noopener" aria-label="Instagram">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>

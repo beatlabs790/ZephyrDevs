@@ -7,15 +7,26 @@
   <meta name="description" content="Explore the design and development services offered by ZephyrDevs, specializing in custom Web Apps, Node.js backends, Firebase, and AI integration.">
   <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="loading-active">
+  <!-- Grain Overlay -->
+  <div class="grain"></div>
 
-  <!-- Loading Screen -->
-  <div id="loading-screen" class="loading-screen">
-    <div class="loader-logo-wrapper">
-      <div class="loader-ring"></div>
-      <img src="zephyrlogo.jpg" alt="ZephyrDevs Logo" class="loader-logo">
-    </div>
-    <div style="font-family: var(--font-title); font-size: 1rem; font-weight: 700; color: #ffffff; letter-spacing: 0.1em; margin-top: 10px;">ZEPHYR<span>DEVS</span></div>
+  <!-- Aurora Backdrop Gradients -->
+  <div class="aurora">
+    <i class="a1"></i>
+    <i class="a2"></i>
+    <i class="a3"></i>
+    <div class="beam"></div>
+  </div>
+
+  <!-- Custom Interactive Cursor -->
+  <div class="cursor-dot"></div>
+  <div class="cursor-ring"></div>
+
+  <!-- Cinematic Intro Gate (Fast Curtain Transition) -->
+  <div id="intro-gate" class="intro-gate fast-loader">
+    <div class="intro-curtain-top"></div>
+    <div class="intro-curtain-bottom"></div>
   </div>
 
   <!-- Glowing Cursor Flashlight Spotlight -->
@@ -65,12 +76,12 @@
   <main class="container" style="padding-top: 180px; padding-bottom: 100px;">
     <!-- Page Header -->
     <div class="section-header reveal">
-      <span class="section-subtitle">What We Do</span>
-      <h1 class="section-title">Our Capabilities</h1>
-      <p>We blend minimalist design paradigms with high-tech engineering to create applications that feel premium and run fast.</p>
+      <span class="section-subtitle">01 / what we build</span>
+      <h1 class="section-title">four pillars. one team.</h1>
+      <p>Every engagement is a partnership. We embed in your process, think in your context, and ship at your pace.</p>
     </div>
 
-    <!-- Services Grid -->
+    <!-- Services Grid (2x2 on desktop) -->
     <div class="services-list" style="margin-top: 40px;">
       <!-- Frontend Card -->
       <div class="service-card glass-panel reveal reveal-left" style="margin-bottom: 24px;">
@@ -83,9 +94,9 @@
         </p>
         <ul class="service-features-list">
           <li>Mobile-First Responsive Frameworks</li>
-          <li>Mac-Styled & Glassmorphic Dashboards</li>
-          <li>Performance Optimization (SEO & Web Vitals)</li>
-          <li>Vanilla JS Scroll Reveals & Micro-animations</li>
+          <li>Mac-Styled &amp; Glassmorphic Dashboards</li>
+          <li>Performance Optimization (SEO &amp; Web Vitals)</li>
+          <li>Vanilla JS Scroll Reveals &amp; Micro-animations</li>
         </ul>
       </div>
 
@@ -93,15 +104,15 @@
       <div class="service-card glass-panel reveal reveal-right" style="margin-bottom: 24px;">
         <div class="service-header-card">
           <div class="service-num">02</div>
-          <h3 class="service-title">Backend Architecture & APIs</h3>
+          <h3 class="service-title">Backend Architecture &amp; APIs</h3>
         </div>
         <p>
           Need a robust logic layer for your product? We build high-throughput backend server routes and deploy serverless functions, handling user sessions, secure authentications, and data syncing.
         </p>
         <ul class="service-features-list">
-          <li>Node.js API Development & Deployment</li>
-          <li>Firebase Realtime Database & Firestore Sync</li>
-          <li>Firebase User Authentication & Authorization</li>
+          <li>Node.js API Development &amp; Deployment</li>
+          <li>Firebase Realtime Database &amp; Firestore Sync</li>
+          <li>Firebase User Authentication &amp; Authorization</li>
           <li>Scalable Serverless Cloud Infrastructure</li>
         </ul>
       </div>
@@ -110,16 +121,16 @@
       <div class="service-card glass-panel reveal reveal-left" style="margin-bottom: 24px;">
         <div class="service-header-card">
           <div class="service-num">03</div>
-          <h3 class="service-title">AI & LLM Systems Integration</h3>
+          <h3 class="service-title">AI &amp; LLM Systems Integration</h3>
         </div>
         <p>
           Inject intelligence directly into your app. We wire your systems with large language models, enabling context-aware chat, smart file analysis, auto-summarization, and semantic search.
         </p>
         <ul class="service-features-list">
           <li>Google Gemini API Pipeline Setup</li>
-          <li>Anthropic Claude Intelligent agents</li>
-          <li>Custom Prompt Engineering & Pipelines</li>
-          <li>Vector Search & Context Retrieval</li>
+          <li>Anthropic Claude Intelligent Agents</li>
+          <li>Custom Prompt Engineering &amp; Pipelines</li>
+          <li>Vector Search &amp; Context Retrieval</li>
         </ul>
       </div>
 
@@ -134,10 +145,82 @@
         </p>
         <ul class="service-features-list">
           <li>Sleek Dark Mode and Neon Accents</li>
-          <li>Top nav Pill active tracking indicator menus</li>
-          <li>Custom SVG Brand Assets & Graphics</li>
-          <li>UI Component Library & Style Tokens</li>
+          <li>Top Nav Pill Active Tracking Indicator Menus</li>
+          <li>Custom SVG Brand Assets &amp; Graphics</li>
+          <li>UI Component Library &amp; Style Tokens</li>
         </ul>
+      </div>
+    </div>
+
+    <!-- Process Strip -->
+    <div class="section-header reveal" style="margin-top: 100px;">
+      <span class="section-subtitle">02 / how we work</span>
+      <h2 class="section-title">from zero to shipped. no detours.</h2>
+    </div>
+
+    <div class="services-process reveal reveal-scale">
+      <div class="process-step">
+        <div class="process-step-num">01 / DISCOVER</div>
+        <h4>briefing &amp; wireframes</h4>
+        <p>Mapping out page flows, visual guidelines, database nodes, and custom style specifications.</p>
+      </div>
+      <div class="process-step">
+        <div class="process-step-num">02 / DESIGN</div>
+        <h4>interactive mockups</h4>
+        <p>Creating glassmorphic CSS layouts, custom typography scales, and responsive templates.</p>
+      </div>
+      <div class="process-step">
+        <div class="process-step-num">03 / BUILD</div>
+        <h4>frontend &amp; backend</h4>
+        <p>Writing fast, pure HTML5/JS files, coding Node backend routes, and configuring Firebase databases.</p>
+      </div>
+      <div class="process-step">
+        <div class="process-step-num">04 / LAUNCH</div>
+        <h4>audit &amp; deploy</h4>
+        <p>Auditing animation timings, optimizing SEO, and launching pages to global servers.</p>
+      </div>
+    </div>
+
+    <!-- Tech Stack Bar -->
+    <div style="display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; margin-top: 80px; padding: 40px 0; border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color);" class="reveal reveal-scale">
+      <div style="display: flex; align-items: center; gap: 10px; color: var(--text-muted); font-family: var(--font-mono); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em;">
+        <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor"><path d="M1.5 0h21l-1.91 21.563L11.977 24l-8.564-2.438L1.5 0zm7.031 9.75l-.232-2.718 10.059.003.23-2.622L5.412 4.41l.698 8.01h9.126l-.326 3.426-2.91.804-2.955-.81-.188-2.11H6.248l.33 4.171L12 19.351l5.379-1.443.744-8.157H8.531z"/></svg>
+        HTML5
+      </div>
+      <div style="display: flex; align-items: center; gap: 10px; color: var(--text-muted); font-family: var(--font-mono); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em;">
+        <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor"><path d="M1.5 0h21l-1.91 21.563L11.977 24l-8.565-2.438L1.5 0zm17.09 4.413L5.41 4.41l.213 2.622 10.125.002-.255 2.716h-6.64l.24 2.573h6.182l-.366 3.523-2.91.804-2.956-.81-.188-2.11h-2.61l.29 3.855L12 19.288l5.373-1.53L18.59 4.414z"/></svg>
+        CSS3
+      </div>
+      <div style="display: flex; align-items: center; gap: 10px; color: var(--text-muted); font-family: var(--font-mono); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em;">
+        <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor"><path d="M0 0h24v24H0V0zm22.034 18.276c-.175-1.095-.888-2.015-3.003-2.873-.736-.345-1.554-.585-1.797-1.14-.091-.33-.105-.51-.046-.705.15-.646.915-.84 1.515-.66.39.12.75.42.976.9 1.034-.676 1.034-.676 1.755-1.125-.27-.42-.404-.601-.586-.78-.63-.705-1.469-1.065-2.834-1.034l-.705.089c-.676.165-1.32.525-1.71 1.005-1.14 1.291-.811 3.541.569 4.471 1.365 1.02 3.361 1.244 3.616 2.205.24 1.17-.87 1.545-1.966 1.41-.811-.18-1.26-.586-1.755-1.336l-1.83 1.051c.21.48.45.689.81 1.109 1.74 1.756 6.09 1.666 6.871-1.004.029-.09.24-.705.074-1.65l.046.067zm-8.983-7.245h-2.248c0 1.938-.009 3.864-.009 5.805 0 1.232.063 2.363-.138 2.711-.33.689-1.18.601-1.566.48-.396-.196-.597-.466-.83-.855-.063-.105-.11-.196-.127-.196l-1.825 1.125c.305.63.75 1.172 1.324 1.517.855.51 2.004.675 3.207.405.783-.226 1.458-.691 1.811-1.411.51-.93.402-2.07.397-3.346.012-2.054 0-4.109 0-6.179l.004-.056z"/></svg>
+        JavaScript
+      </div>
+      <div style="display: flex; align-items: center; gap: 10px; color: var(--text-muted); font-family: var(--font-mono); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em;">
+        <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor"><path d="M11.998,24c-0.321,0-0.641-0.084-0.922-0.247l-2.936-1.737c-0.438-0.245-0.224-0.332-0.08-0.383 c0.585-0.203,0.703-0.25,1.328-0.604c0.065-0.037,0.151-0.023,0.218,0.017l2.256,1.339c0.082,0.045,0.197,0.045,0.272,0l8.795-5.076 c0.082-0.047,0.134-0.141,0.134-0.238V6.921c0-0.099-0.053-0.192-0.137-0.242l-8.791-5.072c-0.081-0.047-0.189-0.047-0.271,0 L3.075,6.68C2.99,6.729,2.936,6.825,2.936,6.921v10.15c0,0.097,0.054,0.189,0.139,0.235l2.409,1.392 c1.307,0.654,2.108-0.116,2.108-0.89V7.787c0-0.142,0.114-0.253,0.256-0.253h1.115c0.139,0,0.255,0.112,0.255,0.253v10.021 c0,1.745-0.95,2.745-2.604,2.745c-0.508,0-0.909,0-2.026-0.551L2.28,18.675c-0.57-0.329-0.922-0.945-0.922-1.604V6.921 c0-0.659,0.353-1.275,0.922-1.603l8.795-5.082c0.557-0.315,1.296-0.315,1.848,0l8.794,5.082c0.57,0.329,0.924,0.944,0.924,1.603 v10.15c0,0.659-0.354,1.273-0.924,1.604l-8.794,5.078C12.643,23.916,12.324,24,11.998,24z"/></svg>
+        Node.js
+      </div>
+      <div style="display: flex; align-items: center; gap: 10px; color: var(--text-muted); font-family: var(--font-mono); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em;">
+        <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor"><path d="M11.04 19.32Q12 21.51 12 24q0-2.49.93-4.68.96-2.19 2.58-3.81t3.81-2.55Q21.51 12 24 12q-2.49 0-4.68-.93a12.3 12.3 0 0 1-3.81-2.58 12.3 12.3 0 0 1-2.58-3.81Q12 2.49 12 0q0 2.49-.96 4.68-.93 2.19-2.55 3.81a12.3 12.3 0 0 1-3.81 2.58Q2.49 12 0 12q2.49 0 4.68.96 2.19.93 3.81 2.55t2.55 3.81"/></svg>
+        Gemini AI
+      </div>
+      <div style="display: flex; align-items: center; gap: 10px; color: var(--text-muted); font-family: var(--font-mono); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em;">
+        <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor"><path d="M17.3041 3.541h-3.6718l6.696 16.918H24Zm-10.6082 0L0 20.459h3.7442l1.3693-3.5527h7.0052l1.3693 3.5528h3.7442L10.5363 3.5409Zm-.3712 10.2232 2.2914-5.9456 2.2914 5.9456Z"/></svg>
+        Claude
+      </div>
+    </div>
+
+    <!-- Bottom CTA -->
+    <div class="services-cta glass-panel reveal reveal-scale">
+      <h2>ready to build something exceptional?</h2>
+      <p>Whether you need a fast landing page or a full-stack web app with AI, we've got you covered. Let's talk scope.</p>
+      <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+        <button class="btn btn-primary" onclick="navigateTo('contact.html')">
+          Start a Project
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+        </button>
+        <button class="btn btn-secondary" onclick="navigateTo('pricing.html')">
+          View Pricing
+        </button>
       </div>
     </div>
   </main>
@@ -171,7 +254,7 @@
       </div>
     </div>
     <div class="container footer-bottom">
-      <div>&copy; 2026 ZephyrDevs. All rights reserved. Made with &hearts; by Akshansh, Aarav & Arshh.</div>
+      <div>&copy; 2026 ZephyrDevs. All rights reserved. Made with &hearts; by Akshansh, Aarav & Arshh. | <a href="#" onclick="openAdminPanel(event)" style="color: var(--text-tertiary); text-decoration: none; font-family: var(--font-mono); font-size: 0.75rem; margin-left: 5px;">[Admin Portal]</a></div>
       <div class="footer-social-icons">
         <a href="https://instagram.com/zephyrdevs" target="_blank" rel="noopener" aria-label="Instagram">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
