@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pricing Plans | ZephyrDevs</title>
+  <meta name="description" content="View transparent pricing plans by ZephyrDevs: Free, ₹199 Pro, and ₹399 Enterprise plans tailored to your design, backend, and AI pipeline needs.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Loading Screen -->
+  <div id="loading-screen" class="loading-screen">
+    <div class="loader-logo-wrapper">
+      <div class="loader-ring"></div>
+      <img src="zephyrlogo.jpg" alt="ZephyrDevs Logo" class="loader-logo">
+    </div>
+    <div style="font-family: var(--font-title); font-size: 1rem; font-weight: 700; color: #ffffff; letter-spacing: 0.1em; margin-top: 10px;">ZEPHYR<span>DEVS</span></div>
+  </div>
+
+  <!-- Glowing Cursor Flashlight Spotlight -->
+  <div id="flashlight-glow"></div>
+
+  <!-- Interactive Particles Canvas -->
+  <canvas id="background-canvas"></canvas>
+
+  <!-- Floating Glassmorphic Top Nav Pill Bar -->
+  <div class="nav-pill-wrapper reveal">
+    <nav class="nav-pill">
+      <a href="index.html" class="nav-brand">
+        <img src="zephyrlogo.jpg" alt="ZephyrDevs Logo" class="nav-brand-img">
+        <div>Zephyr<span>Devs</span></div>
+      </a>
+      
+      <!-- Desktop Navigation links -->
+      <div class="nav-links-container">
+        <div class="nav-indicator"></div>
+        <div class="nav-link-item" onclick="navigateTo('index.html')">Home</div>
+        <div class="nav-link-item" onclick="navigateTo('services.html')">Services</div>
+        <div class="nav-link-item" onclick="navigateTo('pricing.html')">Pricing</div>
+        <div class="nav-link-item" onclick="navigateTo('contact.html')">Start Project</div>
+      </div>
+
+      <!-- Let's Talk CTA button -->
+      <button class="nav-cta-btn" onclick="navigateTo('contact.html')">Let's Talk</button>
+      
+      <!-- Mobile menu hamburger button -->
+      <button class="nav-burger" id="nav-burger-btn" aria-label="Toggle Navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </nav>
+  </div>
+
+  <!-- Mobile Drawer Menu Overlay -->
+  <div class="mobile-drawer" id="mobile-drawer-menu">
+    <div class="mobile-nav-link" onclick="navigateTo('index.html')">Home</div>
+    <div class="mobile-nav-link" onclick="navigateTo('services.html')">Services</div>
+    <div class="mobile-nav-link" onclick="navigateTo('pricing.html')">Pricing</div>
+    <div class="mobile-nav-link" onclick="navigateTo('contact.html')">Start Project</div>
+  </div>
+
+  <!-- Main Content -->
+  <main class="container" style="padding-top: 180px; padding-bottom: 100px;">
+    <!-- Page Header -->
+    <div class="section-header reveal">
+      <span class="section-subtitle">Fair pricing</span>
+      <h1 class="section-title">Transparent Plans</h1>
+      <p>Whether you're testing out a fresh concept or building an enterprise system, we have a structure built for you.</p>
+    </div>
+
+    <!-- Pricing Cards Grid -->
+    <div class="pricing-grid">
+      <!-- Free Plan Card -->
+      <div class="pricing-card glass-panel reveal reveal-left">
+        <div>
+          <h3 class="plan-name">Free</h3>
+          <p class="plan-desc">Perfect for small open-source ideas, portfolio templates, and personal hobbies.</p>
+          <div class="plan-price">₹0<span>/ project</span></div>
+        </div>
+        <ul class="plan-features">
+          <li>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+            1 Responsive HTML/CSS Page
+          </li>
+          <li>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+            Sleek Minimalist Layout
+          </li>
+          <li>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+            Hosting deployment setup assistance
+          </li>
+          <li class="disabled">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            Node.js serverless database
+          </li>
+          <li class="disabled">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            Google Gemini & Claude integrations
+          </li>
+          <li class="disabled">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            24/7 Direct Developer Support
+          </li>
+        </ul>
+        <button class="btn btn-secondary" onclick="navigateTo('contact.html?plan=free')">Select Free Plan</button>
+      </div>
+
+      <!-- Pro Plan Card -->
+      <div class="pricing-card glass-panel popular reveal reveal-scale">
+        <div>
+          <h3 class="plan-name">Pro</h3>
+          <p class="plan-desc">For startups and professional projects needing reliable database pipelines and AI aids.</p>
+          <div class="plan-price">₹199<span>/ project</span></div>
+        </div>
+        <ul class="plan-features">
+          <li>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+            Up to 5 Fully Responsive Pages
+          </li>
+          <li>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+            Node.js REST API routes
+          </li>
+          <li>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+            Firebase Storage & Auth configuration
+          </li>
+          <li>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+            Google Gemini smart forms connection
+          </li>
+          <li>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+            3 Months developer warranty support
+          </li>
+          <li class="disabled">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            Claude intelligent multi-agent setups
+          </li>
+        </ul>
+        <button class="btn btn-primary" onclick="navigateTo('contact.html?plan=pro')">Select Pro Plan</button>
+      </div>
+
+      <!-- Enterprise Plan Card -->
+      <div class="pricing-card glass-panel reveal reveal-right">
+        <div>
+          <h3 class="plan-name">Enterprise</h3>
+          <p class="plan-desc">For complex apps requiring dual-LLM systems, high database throughput, and priority access.</p>
+          <div class="plan-price">₹399<span>/ project</span></div>
+        </div>
+        <ul class="plan-features">
+          <li>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+            Unlimited Pages & Complete Systems
+          </li>
+          <li>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+            High-Performance Node API + Express
+          </li>
+          <li>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+            Firebase Firestore Realtime sync
+          </li>
+          <li>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+            Google Gemini + Anthropic Claude Suite
+          </li>
+          <li>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+            Security audit & page load optimization
+          </li>
+          <li>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+            24/7 VIP Discord developer access
+          </li>
+        </ul>
+        <button class="btn btn-secondary" onclick="navigateTo('contact.html?plan=enterprise')">Select Enterprise Plan</button>
+      </div>
+    </div>
+
+    <!-- Pricing Comparison Table -->
+    <section style="margin-top: 60px;">
+      <div class="section-header reveal">
+        <span class="section-subtitle">Compare</span>
+        <h2 class="section-title">Feature Comparison</h2>
+        <p>A quick overview of what features are enabled inside each project plan tier.</p>
+      </div>
+
+      <div class="mac-window reveal reveal-scale" style="max-width: 900px; margin: 0 auto;">
+        <div class="mac-titlebar">
+          <div class="mac-controls">
+            <span class="mac-dot close"></span>
+            <span class="mac-dot minimize"></span>
+            <span class="mac-dot maximize"></span>
+          </div>
+          <span class="mac-window-title">features - pricing_matrix.json</span>
+        </div>
+        <div class="mac-content" style="background: #0c0d12; overflow-x: auto; padding: 0;">
+          <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 0.85rem; color: #a6accd;">
+            <thead>
+              <tr style="border-bottom: 1px solid rgba(255,255,255,0.06); background: rgba(255,255,255,0.02);">
+                <th style="padding: 16px 24px; color: #ffffff; font-weight: 600;">Feature</th>
+                <th style="padding: 16px 24px; color: #ffffff; font-weight: 600;">Free</th>
+                <th style="padding: 16px 24px; color: #ffffff; font-weight: 600;">Pro (₹199)</th>
+                <th style="padding: 16px 24px; color: #ffffff; font-weight: 600;">Enterprise (₹399)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="border-bottom: 1px solid rgba(255,255,255,0.03);">
+                <td style="padding: 14px 24px; font-weight: 500; color: #ffffff;">HTML/CSS Interface</td>
+                <td style="padding: 14px 24px; color: var(--neon-green);">Single Page</td>
+                <td style="padding: 14px 24px; color: var(--neon-green);">Multi Page (5)</td>
+                <td style="padding: 14px 24px; color: var(--neon-green);">Unlimited Pages</td>
+              </tr>
+              <tr style="border-bottom: 1px solid rgba(255,255,255,0.03);">
+                <td style="padding: 14px 24px; font-weight: 500; color: #ffffff;">Custom Nav Animations</td>
+                <td style="padding: 14px 24px; color: var(--neon-green);">&#10004; Yes</td>
+                <td style="padding: 14px 24px; color: var(--neon-green);">&#10004; Yes</td>
+                <td style="padding: 14px 24px; color: var(--neon-green);">&#10004; Yes</td>
+              </tr>
+              <tr style="border-bottom: 1px solid rgba(255,255,255,0.03);">
+                <td style="padding: 14px 24px; font-weight: 500; color: #ffffff;">Node & Firebase Backend</td>
+                <td style="padding: 14px 24px; color: var(--text-muted);">&#10008; None</td>
+                <td style="padding: 14px 24px; color: var(--neon-green);">Standard Integration</td>
+                <td style="padding: 14px 24px; color: var(--neon-green);">High-Throughput / Sync</td>
+              </tr>
+              <tr style="border-bottom: 1px solid rgba(255,255,255,0.03);">
+                <td style="padding: 14px 24px; font-weight: 500; color: #ffffff;">Google Gemini AI Integration</td>
+                <td style="padding: 14px 24px; color: var(--text-muted);">&#10008; None</td>
+                <td style="padding: 14px 24px; color: var(--neon-green);">Basic Forms / Chat</td>
+                <td style="padding: 14px 24px; color: var(--neon-green);">Custom Prompts / Pipelines</td>
+              </tr>
+              <tr style="border-bottom: 1px solid rgba(255,255,255,0.03);">
+                <td style="padding: 14px 24px; font-weight: 500; color: #ffffff;">Anthropic Claude Integration</td>
+                <td style="padding: 14px 24px; color: var(--text-muted);">&#10008; None</td>
+                <td style="padding: 14px 24px; color: var(--text-muted);">&#10008; None</td>
+                <td style="padding: 14px 24px; color: var(--neon-green);">Full Multi-Agent Systems</td>
+              </tr>
+              <tr>
+                <td style="padding: 14px 24px; font-weight: 500; color: #ffffff;">Support Delivery Channel</td>
+                <td style="padding: 14px 24px; color: var(--text-muted);">Community Discord</td>
+                <td style="padding: 14px 24px; color: var(--neon-green);">Email (12hr SLA)</td>
+                <td style="padding: 14px 24px; color: var(--neon-green);">24/7 VIP Chat Channel</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer Section -->
+  <footer>
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="logo-link">
+          <img src="zephyrlogo.jpg" alt="ZephyrDevs Logo" class="nav-brand-img">
+          <div class="logo-text" style="font-family: var(--font-title); font-size: 1.25rem; font-weight: 800;">Zephyr<span style="color: var(--neon-cyan);">Devs</span></div>
+        </a>
+        <p>Blowing fresh design and AI-driven intelligence into modern digital spaces. Clean code, responsive screens, lightning speed.</p>
+      </div>
+      <div class="footer-links">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="pricing.html">Pricing Plans</a></li>
+          <li><a href="contact.html">Start a Project</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h4>Contact Us</h4>
+        <ul>
+          <li>Email: <a href="mailto:Zephyrdevsofficial@gmail.com" style="color: var(--neon-cyan);">Zephyrdevsofficial@gmail.com</a></li>
+          <li>Instagram: <a href="https://instagram.com/zephyrdevs" target="_blank" rel="noopener">@zephyrdevs</a></li>
+          <li>Location: Globally Distributed</li>
+        </ul>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <div>&copy; 2026 ZephyrDevs. All rights reserved. Made with &hearts; by Akshansh, Aarav & Arshh.</div>
+      <div class="footer-social-icons">
+        <a href="https://instagram.com/zephyrdevs" target="_blank" rel="noopener" aria-label="Instagram">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>

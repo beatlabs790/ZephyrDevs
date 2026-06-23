@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ZephyrDevs | Premium Web Development & AI Integrations</title>
+  <meta name="description" content="ZephyrDevs is a premium design and development agency specializing in HTML, CSS, JS, Node, Firebase, and state-of-the-art AI systems including Google Gemini & Anthropic Claude.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Loading Screen -->
+  <div id="loading-screen" class="loading-screen">
+    <div class="loader-logo-wrapper">
+      <div class="loader-ring"></div>
+      <img src="zephyrlogo.jpg" alt="ZephyrDevs Logo" class="loader-logo">
+    </div>
+    <div style="font-family: var(--font-title); font-size: 1rem; font-weight: 700; color: #ffffff; letter-spacing: 0.1em; margin-top: 10px;">ZEPHYR<span>DEVS</span></div>
+  </div>
+
+  <!-- Glowing Cursor Flashlight Spotlight -->
+  <div id="flashlight-glow"></div>
+
+  <!-- Interactive Particles Canvas -->
+  <canvas id="background-canvas"></canvas>
+
+  <!-- Floating Glassmorphic Top Nav Pill Bar -->
+  <div class="nav-pill-wrapper reveal">
+    <nav class="nav-pill">
+      <a href="index.html" class="nav-brand">
+        <img src="zephyrlogo.jpg" alt="ZephyrDevs Logo" class="nav-brand-img">
+        <div>Zephyr<span>Devs</span></div>
+      </a>
+      
+      <!-- Desktop Navigation links -->
+      <div class="nav-links-container">
+        <div class="nav-indicator"></div>
+        <div class="nav-link-item" onclick="navigateTo('index.html')">Home</div>
+        <div class="nav-link-item" onclick="navigateTo('services.html')">Services</div>
+        <div class="nav-link-item" onclick="navigateTo('pricing.html')">Pricing</div>
+        <div class="nav-link-item" onclick="navigateTo('contact.html')">Start Project</div>
+      </div>
+
+      <!-- Let's Talk CTA button -->
+      <button class="nav-cta-btn" onclick="navigateTo('contact.html')">Let's Talk</button>
+      
+      <!-- Mobile menu hamburger button -->
+      <button class="nav-burger" id="nav-burger-btn" aria-label="Toggle Navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </nav>
+  </div>
+
+  <!-- Mobile Drawer Menu Overlay -->
+  <div class="mobile-drawer" id="mobile-drawer-menu">
+    <div class="mobile-nav-link" onclick="navigateTo('index.html')">Home</div>
+    <div class="mobile-nav-link" onclick="navigateTo('services.html')">Services</div>
+    <div class="mobile-nav-link" onclick="navigateTo('pricing.html')">Pricing</div>
+    <div class="mobile-nav-link" onclick="navigateTo('contact.html')">Start Project</div>
+  </div>
+
+  <!-- Main Hero Area -->
+  <main class="container">
+    <section class="hero reveal">
+      <div class="hero-badge">
+        <span></span> Accepting Projects For 2026
+      </div>
+      <h1 class="hero-title">
+        Bespoke Digital Design & <span>AI Integration</span>
+      </h1>
+      <p class="hero-desc">
+        We build fast, responsive, and intelligence-driven web applications. Powered by HTML5, Node.js, Firebase, Google AI, and Anthropic Claude.
+      </p>
+      <div class="hero-ctas">
+        <button class="btn btn-primary" onclick="navigateTo('contact.html')">
+          Start a Project
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+        </button>
+        <button class="btn btn-secondary" onclick="navigateTo('services.html')">
+          Explore Services
+        </button>
+      </div>
+
+      <!-- macOS CLI Window Mockup -->
+      <div class="mac-window reveal reveal-scale" style="max-width: 800px; margin-top: 60px;">
+        <div class="mac-titlebar">
+          <div class="mac-controls">
+            <span class="mac-dot close"></span>
+            <span class="mac-dot minimize"></span>
+            <span class="mac-dot maximize"></span>
+          </div>
+          <span class="mac-window-title">bash - zephyrdevs-init.sh</span>
+        </div>
+        <div class="mac-content" style="text-align: left; font-family: monospace; font-size: 0.9rem; color: #a6accd; background: #0c0d12;">
+          <p style="color: var(--neon-green); margin-bottom: 8px;">$ npx zephyrdevs init</p>
+          <p style="margin-bottom: 4px;">🚀 Fetching custom design parameters...</p>
+          <p style="margin-bottom: 4px;">💻 Initializing mobile-first layout (HTML5 & Custom CSS)... Done.</p>
+          <p style="margin-bottom: 4px;">🔥 Activating databases (Firebase Firestore & Node APIs)... Done.</p>
+          <p style="margin-bottom: 4px;">🧠 Linking AI modules (Google AI Gemini & Anthropic Claude)... Done.</p>
+          <p style="margin-bottom: 12px; color: #00f0ff;">✨ ZephyrDevs architecture active. Ready to build your digital future.</p>
+          
+          <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 20px; margin-top: 10px;">
+            <div>
+              <div style="font-size: 1.5rem; font-weight: 700; color: #ffffff;">24+</div>
+              <div style="font-size: 0.75rem; color: var(--text-secondary);">Apps Shipped</div>
+            </div>
+            <div>
+              <div style="font-size: 1.5rem; font-weight: 700; color: var(--neon-green);">100%</div>
+              <div style="font-size: 0.75rem; color: var(--text-secondary);">Performance</div>
+            </div>
+            <div>
+              <div style="font-size: 1.5rem; font-weight: 700; color: #00f0ff;">12hr</div>
+              <div style="font-size: 0.75rem; color: var(--text-secondary);">Response Time</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Recent Showcase Section -->
+    <section id="showcase">
+      <div class="section-header reveal">
+        <span class="section-subtitle">Portfolio</span>
+        <h2 class="section-title">Recent Work</h2>
+        <p>A handpicked selection of custom web applications and experimental projects we've built.</p>
+      </div>
+
+      <div style="display: grid; grid-template-columns: 1fr; gap: 40px; margin-top: 40px;">
+        <!-- Project 1 -->
+        <div class="mac-window reveal reveal-left" style="margin: 0;">
+          <div class="mac-titlebar">
+            <div class="mac-controls">
+              <span class="mac-dot close"></span>
+              <span class="mac-dot minimize"></span>
+              <span class="mac-dot maximize"></span>
+            </div>
+            <span class="mac-window-title">App: aether-intelligence-hub</span>
+          </div>
+          <div class="mac-content" style="display: grid; grid-template-columns: 1fr; gap: 20px; text-align: left; background: #0c0d12;">
+            <div>
+              <span style="font-size: 0.75rem; color: var(--neon-green); font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em;">AI Integration / Analytics</span>
+              <h3 style="font-size: 1.5rem; margin: 8px 0 16px; color: #ffffff;">Aether AI Diagnostic Dashboard</h3>
+              <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 20px;">
+                A real-time data visualizer designed for server log tracing. Integrated with Anthropic Claude to scan warning signs, generate automated debug recommendations, and alert developer channels.
+              </p>
+              <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                <span style="background: rgba(255,255,255,0.03); border: 1px solid var(--border-color); padding: 4px 12px; border-radius: 6px; font-size: 0.75rem;">Anthropic Claude</span>
+                <span style="background: rgba(255,255,255,0.03); border: 1px solid var(--border-color); padding: 4px 12px; border-radius: 6px; font-size: 0.75rem;">Node.js</span>
+                <span style="background: rgba(255,255,255,0.03); border: 1px solid var(--border-color); padding: 4px 12px; border-radius: 6px; font-size: 0.75rem;">Firebase Storage</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 2 -->
+        <div class="mac-window reveal reveal-right" style="margin: 0;">
+          <div class="mac-titlebar">
+            <div class="mac-controls">
+              <span class="mac-dot close"></span>
+              <span class="mac-dot minimize"></span>
+              <span class="mac-dot maximize"></span>
+            </div>
+            <span class="mac-window-title">App: omni-portal-saas</span>
+          </div>
+          <div class="mac-content" style="display: grid; grid-template-columns: 1fr; gap: 20px; text-align: left; background: #0c0d12;">
+            <div>
+              <span style="font-size: 0.75rem; color: #00f0ff; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em;">Realtime Cloud Platform</span>
+              <h3 style="font-size: 1.5rem; margin: 8px 0 16px; color: #ffffff;">Omni CRM Sync Portal</h3>
+              <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 20px;">
+                A responsive CRM interface built for sub-second updates across multiple screens. Harnesses Firebase Firestore's offline-first cache and Node.js security tokens for complete client data safety.
+              </p>
+              <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                <span style="background: rgba(255,255,255,0.03); border: 1px solid var(--border-color); padding: 4px 12px; border-radius: 6px; font-size: 0.75rem;">HTML5 & CSS</span>
+                <span style="background: rgba(255,255,255,0.03); border: 1px solid var(--border-color); padding: 4px 12px; border-radius: 6px; font-size: 0.75rem;">Firebase Firestore</span>
+                <span style="background: rgba(255,255,255,0.03); border: 1px solid var(--border-color); padding: 4px 12px; border-radius: 6px; font-size: 0.75rem;">Google AI Gemini</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Interactive AI Sandbox Playground -->
+    <section id="ai-sandbox">
+      <div class="section-header reveal">
+        <span class="section-subtitle">Live Demo</span>
+        <h2 class="section-title">AI Engine Sandbox</h2>
+        <p>Toggle models and run live mock prompts to see how we integrate Google Gemini & Anthropic Claude APIs into your logic layers.</p>
+      </div>
+
+      <div class="mac-window reveal reveal-scale" style="max-width: 850px; margin: 0 auto;">
+        <div class="mac-titlebar">
+          <div class="mac-controls">
+            <span class="mac-dot close"></span>
+            <span class="mac-dot minimize"></span>
+            <span class="mac-dot maximize"></span>
+          </div>
+          <span class="mac-window-title">console - zephyrdevs_ai_agent.py</span>
+        </div>
+        
+        <!-- Tab selectors -->
+        <div class="sandbox-tabs">
+          <button class="sandbox-tab-btn active" data-ai="gemini">Google Gemini 1.5</button>
+          <button class="sandbox-tab-btn" data-ai="claude">Anthropic Claude 3.5</button>
+        </div>
+
+        <!-- Output Display Console -->
+        <div class="sandbox-console-body">
+          <div class="sandbox-output" id="sandbox-output-text">
+            <span style="color: var(--text-secondary);">// System ready. Choose an action below to query Google Gemini...</span>
+          </div>
+          
+          <!-- Loader Spinner -->
+          <div class="sandbox-loader" id="sandbox-loader-element">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="2" x2="12" y2="6"></line><line x1="12" y1="18" x2="12" y2="22"></line><line x1="4.93" y1="4.93" x2="7.76" y2="7.76"></line><line x1="16.24" y1="16.24" x2="19.07" y2="19.07"></line><line x1="2" y1="12" x2="6" y2="12"></line><line x1="18" y1="12" x2="22" y2="12"></line><line x1="4.93" y1="19.07" x2="7.76" y2="16.24"></line><line x1="16.24" y1="7.76" x2="19.07" y2="4.93"></line></svg>
+            <span>Querying model endpoint...</span>
+          </div>
+        </div>
+
+        <!-- Action prompts buttons -->
+        <div class="sandbox-actions">
+          <button class="sandbox-action-btn" data-action="analyze">Analyze Code</button>
+          <button class="sandbox-action-btn" data-action="backend">Check Database</button>
+          <button class="sandbox-action-btn" data-action="prompt">Run Prompt</button>
+          <button class="sandbox-action-btn" data-action="tuning">Tuning Specs</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Co-founders / Team Section -->
+    <section id="founders">
+      <div class="section-header reveal">
+        <span class="section-subtitle">Leadership</span>
+        <h2 class="section-title">Meet the Founders</h2>
+        <p>A team of design-obsessed engineers pushing the boundaries of custom web experiences.</p>
+      </div>
+
+      <div class="founders-grid">
+        <!-- Akshansh Sinha -->
+        <div class="founder-card glass-panel reveal reveal-left">
+          <div class="founder-avatar-wrapper">
+            <div class="founder-avatar" style="background: linear-gradient(135deg, rgba(0, 230, 118, 0.2) 0%, rgba(0, 176, 255, 0.2) 100%);">
+              AS
+            </div>
+          </div>
+          <span class="founder-role">Co-Founder & Tech Architect</span>
+          <h3 class="founder-name">Akshansh Sinha</h3>
+          <p class="founder-bio">
+            Specializes in backend architecture, Google Gemini model tuning, and cloud-native solutions with Node.js and Firebase.
+          </p>
+          <div class="founder-socials">
+            <a href="https://instagram.com/akshansh_6969" target="_blank" rel="noopener" class="social-link">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+              @akshansh_6969
+            </a>
+          </div>
+        </div>
+
+        <!-- Aarav Sharma -->
+        <div class="founder-card glass-panel reveal reveal-scale">
+          <div class="founder-avatar-wrapper">
+            <div class="founder-avatar" style="background: linear-gradient(135deg, rgba(0, 176, 255, 0.2) 0%, rgba(200, 0, 255, 0.2) 100%);">
+              AS
+            </div>
+          </div>
+          <span class="founder-role">Co-Founder & Creative Lead</span>
+          <h3 class="founder-name">Aarav Sharma</h3>
+          <p class="founder-bio">
+            Designs premium glassmorphic UI interfaces, creates fluid custom animations, and manages Claude AI API pipelines.
+          </p>
+          <div class="founder-socials">
+            <a href="https://instagram.com/aarav_sharma_sui" target="_blank" rel="noopener" class="social-link">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+              @aarav_sharma_sui
+            </a>
+          </div>
+        </div>
+
+        <!-- Arshh -->
+        <div class="founder-card glass-panel reveal reveal-right">
+          <div class="founder-avatar-wrapper">
+            <div class="founder-avatar" style="background: linear-gradient(135deg, rgba(200, 0, 255, 0.2) 0%, rgba(0, 230, 118, 0.2) 100%);">
+              AR
+            </div>
+          </div>
+          <span class="founder-role">Co-Founder & Lead AI Engineer</span>
+          <h3 class="founder-name">Arshh</h3>
+          <p class="founder-bio">
+            Focuses on advanced Claude AI workflows, neural-network integrations, and high-performance server logic.
+          </p>
+          <div class="founder-socials">
+            <a href="https://instagram.com/arshhispro_" target="_blank" rel="noopener" class="social-link">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+              @arshhispro_
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Lifecycle Timeline Section -->
+    <section id="lifecycle">
+      <div class="section-header reveal">
+        <span class="section-subtitle">Methodology</span>
+        <h2 class="section-title">Development Lifecycle</h2>
+        <p>From prompt setup to live launch, we manage client integrations through an agile process.</p>
+      </div>
+
+      <div class="lifecycle-grid">
+        <!-- Step 1 -->
+        <div class="lifecycle-card glass-panel reveal reveal-left">
+          <div class="lifecycle-num">01 / DISCOVER</div>
+          <h4>Briefing & Wireframes</h4>
+          <p>Mapping out pages flow, visual guidelines, database nodes, and custom style specifications.</p>
+        </div>
+        <!-- Step 2 -->
+        <div class="lifecycle-card glass-panel reveal reveal-scale">
+          <div class="lifecycle-num">02 / DESIGN</div>
+          <h4>Interactive Mockups</h4>
+          <p>Creating glassmorphic CSS layouts, custom typography scales, and responsive templates.</p>
+        </div>
+        <!-- Step 3 -->
+        <div class="lifecycle-card glass-panel reveal reveal-scale">
+          <div class="lifecycle-num">03 / BUILD</div>
+          <h4>Frontend & Backend</h4>
+          <p>Writing fast, pure HTML5/JS files, coding Node backend server routes, and configuring Firebase databases.</p>
+        </div>
+        <!-- Step 4 -->
+        <div class="lifecycle-card glass-panel reveal reveal-scale">
+          <div class="lifecycle-num">04 / INTELLIGENCE</div>
+          <h4>AI Orchestration</h4>
+          <p>Integrating Gemini and Claude models, designing system prompts, and optimizing API token budgets.</p>
+        </div>
+        <!-- Step 5 -->
+        <div class="lifecycle-card glass-panel reveal reveal-right">
+          <div class="lifecycle-num">05 / LAUNCH</div>
+          <h4>Audit & Deploy</h4>
+          <p>Auditing animation timings, optimizing SEO configurations, and launching pages to global servers.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Live Tech Stack Stats -->
+    <section id="stats" style="background: rgba(8, 9, 12, 0.4); border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color); padding: 60px 0;">
+      <div class="container stats-bar reveal reveal-scale">
+        <div class="stat-item">
+          <div class="stat-number">99.9%</div>
+          <div class="stat-label">Hosting Uptime</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">&lt; 0.8s</div>
+          <div class="stat-label">First Paint Speed</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">24+</div>
+          <div class="stat-label">Production Apps</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">50k+</div>
+          <div class="stat-label">AI Token Queries</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tech Stack Section -->
+    <section id="tech-stack">
+      <div class="section-header reveal">
+        <span class="section-subtitle">Our Tools</span>
+        <h2 class="section-title">The Engine Room</h2>
+        <p>We build lightweight interfaces integrated with the most powerful tools available today.</p>
+      </div>
+
+      <div class="tech-grid reveal">
+        <!-- HTML -->
+        <div class="tech-node glass-panel">
+          <div class="tech-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 17.5 3 6V3h18v3l-11.5 11.5z"></path><path d="m3 3 8.5 8.5L3 20h18l-8.5-8.5L21 3"></path></svg>
+          </div>
+          <div class="tech-name">HTML5</div>
+        </div>
+        <!-- CSS -->
+        <div class="tech-node glass-panel">
+          <div class="tech-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"></path><path d="M2 17l10 5 10-5"></path><path d="M2 12l10 5 10-5"></path></svg>
+          </div>
+          <div class="tech-name">Custom CSS</div>
+        </div>
+        <!-- JS -->
+        <div class="tech-node glass-panel">
+          <div class="tech-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+          </div>
+          <div class="tech-name">Vanilla JS</div>
+        </div>
+        <!-- Node -->
+        <div class="tech-node glass-panel">
+          <div class="tech-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+          </div>
+          <div class="tech-name">Node.js</div>
+        </div>
+        <!-- Firebase -->
+        <div class="tech-node glass-panel">
+          <div class="tech-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"></path><path d="M2 17l10 5 10-5"></path><circle cx="12" cy="12" r="3"></circle></svg>
+          </div>
+          <div class="tech-name">Firebase</div>
+        </div>
+        <!-- Google Gemini -->
+        <div class="tech-node glass-panel">
+          <div class="tech-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+          </div>
+          <div class="tech-name">Google Gemini AI</div>
+        </div>
+        <!-- Anthropic Claude -->
+        <div class="tech-node glass-panel">
+          <div class="tech-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+          </div>
+          <div class="tech-name">Anthropic Claude</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Why Choose Us / Features Section -->
+    <section id="why-choose-us">
+      <div class="section-header reveal">
+        <span class="section-subtitle">Why Us</span>
+        <h2 class="section-title">Designed to Scale</h2>
+        <p>We do not use cookie-cutter templates. We craft responsive web structures optimized for high retention.</p>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 24px; margin-top: 40px;">
+        <!-- Feature 1 -->
+        <div class="glass-panel reveal reveal-left" style="padding: 30px;">
+          <div style="width: 40px; height: 40px; border-radius: 8px; background: rgba(0, 230, 118, 0.08); display: flex; align-items: center; justify-content: center; color: var(--neon-green); margin-bottom: 20px;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+          </div>
+          <h4 style="font-size: 1.1rem; margin-bottom: 8px;">Buttery-Smooth Performance</h4>
+          <p style="font-size: 0.85rem; color: var(--text-secondary);">Average load times stay under 0.8s. Highly optimized asset files, responsive layouts, and zero framework clutter.</p>
+        </div>
+
+        <!-- Feature 2 -->
+        <div class="glass-panel reveal reveal-scale" style="padding: 30px;">
+          <div style="width: 40px; height: 40px; border-radius: 8px; background: rgba(0, 176, 255, 0.08); display: flex; align-items: center; justify-content: center; color: var(--neon-cyan); margin-bottom: 20px;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polygon points="12 8 8 12 12 16 16 12 12 8"></polygon></svg>
+          </div>
+          <h4 style="font-size: 1.1rem; margin-bottom: 8px;">Tailored Tech Aesthetics</h4>
+          <p style="font-size: 0.85rem; color: var(--text-secondary);">Minimalist dark layouts, custom glassmorphism, hardware-accelerated animations, and responsive screen flow.</p>
+        </div>
+
+        <!-- Feature 3 -->
+        <div class="glass-panel reveal reveal-right" style="padding: 30px;">
+          <div style="width: 40px; height: 40px; border-radius: 8px; background: rgba(189, 91, 247, 0.08); display: flex; align-items: center; justify-content: center; color: var(--neon-violet); margin-bottom: 20px;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="7.5 4.21 12 6.81 16.5 4.21"></polyline><polyline points="7.5 19.79 7.5 14.6 3 12"></polyline><polyline points="21 12 16.5 14.6 16.5 19.79"></polyline><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+          </div>
+          <h4 style="font-size: 1.1rem; margin-bottom: 8px;">Direct Co-Founder Communication</h4>
+          <p style="font-size: 0.85rem; color: var(--text-secondary);">Collaborate straight with Akshansh, Aarav, or Arshh. No sales reps, no layers of developers, total agility.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Accordion FAQs -->
+    <section id="faq">
+      <div class="section-header reveal">
+        <span class="section-subtitle">FAQ</span>
+        <h2 class="section-title">Frequently Asked Questions</h2>
+        <p>Find quick answers to common questions about our templates, timelines, backends, and AI integrations.</p>
+      </div>
+
+      <div class="faq-list reveal reveal-scale">
+        <!-- Question 1 -->
+        <div class="faq-item">
+          <button class="faq-question-btn">
+            <span>What deliverables are included?</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-content">
+              We hand off production-ready HTML5, CSS3, and vanilla JS folders, configured Node.js server routes, Firebase collections, and model prompt files. We also set up hosting domains.
+            </div>
+          </div>
+        </div>
+
+        <!-- Question 2 -->
+        <div class="faq-item">
+          <button class="faq-question-btn">
+            <span>How fast can a project launch?</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-content">
+              For our Free plan template, launch takes under 3 days. Pro plan apps average 7-14 days. Custom Enterprise systems featuring dual-LLM pipelines launch in 3-4 weeks.
+            </div>
+          </div>
+        </div>
+
+        <!-- Question 3 -->
+        <div class="faq-item">
+          <button class="faq-question-btn">
+            <span>Do you help with database migration?</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-content">
+              Yes. If you select our Pro or Enterprise plan, we map existing tables, set up secure Firestore collections, and route them to custom Node API calls.
+            </div>
+          </div>
+        </div>
+
+        <!-- Question 4 -->
+        <div class="faq-item">
+          <button class="faq-question-btn">
+            <span>How do Gemini and Claude API charges work?</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-content">
+              We help you set up accounts with Google Cloud and Anthropic Console. You only pay for what you query (typically fractions of a cent per prompt). We write cache functions to keep your API bills low.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Client Testimonials Section -->
+    <section id="testimonials">
+      <div class="section-header reveal">
+        <span class="section-subtitle">Testimonials</span>
+        <h2 class="section-title">Client Voices</h2>
+        <p>What our clients and partners say about working alongside ZephyrDevs.</p>
+      </div>
+
+      <div style="display: grid; grid-template-columns: 1fr; gap: 30px; max-width: 900px; margin: 40px auto 0;">
+        <!-- Review 1 -->
+        <div class="glass-panel reveal reveal-scale" style="padding: 36px; border-left: 3px solid var(--neon-green);">
+          <div style="display: flex; gap: 4px; color: var(--neon-green); margin-bottom: 16px;">
+            &#9733;&#9733;&#9733;&#9733;&#9733;
+          </div>
+          <p style="font-size: 1rem; color: #ffffff; font-style: italic; margin-bottom: 20px;">
+            "ZephyrDevs integrated our backend database with Google Gemini and Claude AI pipelines within a few days. The loading speeds and interactive macOS-dock design got us praised by early users!"
+          </p>
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <div>
+              <div style="font-size: 0.9rem; font-weight: 700; color: #ffffff;">Devansh Mehta</div>
+              <div style="font-size: 0.75rem; color: var(--text-secondary);">CTO, AetherLabs</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Review 2 -->
+        <div class="glass-panel reveal reveal-scale" style="padding: 36px; border-left: 3px solid var(--neon-cyan);">
+          <div style="display: flex; gap: 4px; color: var(--neon-cyan); margin-bottom: 16px;">
+            &#9733;&#9733;&#9733;&#9733;&#9733;
+          </div>
+          <p style="font-size: 1rem; color: #ffffff; font-style: italic; margin-bottom: 20px;">
+            "The performance of our static layout is incredible. No generic templates—it’s pure custom CSS glassmorphic details. Working with the co-founders directly made iterations lightning fast."
+          </p>
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <div>
+              <div style="font-size: 0.9rem; font-weight: 700; color: #ffffff;">Rohan Shrivastav</div>
+              <div style="font-size: 0.75rem; color: var(--text-secondary);">Director, PixelCraft</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Review 3 -->
+        <div class="glass-panel reveal reveal-scale" style="padding: 36px; border-left: 3px solid var(--neon-violet);">
+          <div style="display: flex; gap: 4px; color: var(--neon-violet); margin-bottom: 16px;">
+            &#9733;&#9733;&#9733;&#9733;&#9733;
+          </div>
+          <p style="font-size: 1rem; color: #ffffff; font-style: italic; margin-bottom: 20px;">
+            "We needed a premium web interface for our commercial and residential complex. ZephyrDevs delivered a stunning website that showcases our spaces beautifully and handles visitor queries seamlessly."
+          </p>
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <div>
+              <div style="font-size: 0.9rem; font-weight: 700; color: #ffffff;">PS Verma</div>
+              <div style="font-size: 0.75rem; color: var(--text-secondary);">Representative, <a href="https://rkmsquare.vercel.app" target="_blank" rel="noopener" style="color: var(--neon-violet); text-shadow: 0 0 8px var(--neon-violet-glow);">RKM Square</a></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pricing Promo Callout -->
+    <section id="cta-promo" class="reveal">
+      <div class="glass-panel" style="padding: 50px; border-radius: 8px; text-align: center; border: 1px dashed var(--neon-cyan);">
+        <h2 style="font-size: 2rem; margin-bottom: 16px;">Transparent Pricing for Every Project</h2>
+        <p style="margin-bottom: 24px; max-width: 600px; margin-left: auto; margin-right: auto;">
+          Whether you want a simple landing page or an enterprise level application with advanced AI functionality, we have flexible plans starting from ₹0.
+        </p>
+        <div class="hero-ctas">
+          <button class="btn btn-primary" onclick="navigateTo('pricing.html')">View 3 Pricing Plans</button>
+          <button class="btn btn-secondary" onclick="navigateTo('contact.html')">Get Free Quote</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer Section -->
+  <footer>
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="logo-link">
+          <img src="zephyrlogo.jpg" alt="ZephyrDevs Logo" class="nav-brand-img">
+          <div class="logo-text" style="font-family: var(--font-title); font-size: 1.25rem; font-weight: 800;">Zephyr<span style="color: var(--neon-cyan);">Devs</span></div>
+        </a>
+        <p>Blowing fresh design and AI-driven intelligence into modern digital spaces. Clean code, responsive screens, lightning speed.</p>
+      </div>
+      <div class="footer-links">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="pricing.html">Pricing Plans</a></li>
+          <li><a href="contact.html">Start a Project</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h4>Contact Us</h4>
+        <ul>
+          <li>Email: <a href="mailto:Zephyrdevsofficial@gmail.com" style="color: var(--neon-cyan);">Zephyrdevsofficial@gmail.com</a></li>
+          <li>Instagram: <a href="https://instagram.com/zephyrdevs" target="_blank" rel="noopener">@zephyrdevs</a></li>
+          <li>Location: Globally Distributed</li>
+        </ul>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <div>&copy; 2026 ZephyrDevs. All rights reserved. Made with &hearts; by Akshansh, Aarav & Arshh.</div>
+      <div class="footer-social-icons">
+        <a href="https://instagram.com/zephyrdevs" target="_blank" rel="noopener" aria-label="Instagram">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>

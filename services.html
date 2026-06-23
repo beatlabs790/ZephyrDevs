@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Services | ZephyrDevs</title>
+  <meta name="description" content="Explore the design and development services offered by ZephyrDevs, specializing in custom Web Apps, Node.js backends, Firebase, and AI integration.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Loading Screen -->
+  <div id="loading-screen" class="loading-screen">
+    <div class="loader-logo-wrapper">
+      <div class="loader-ring"></div>
+      <img src="zephyrlogo.jpg" alt="ZephyrDevs Logo" class="loader-logo">
+    </div>
+    <div style="font-family: var(--font-title); font-size: 1rem; font-weight: 700; color: #ffffff; letter-spacing: 0.1em; margin-top: 10px;">ZEPHYR<span>DEVS</span></div>
+  </div>
+
+  <!-- Glowing Cursor Flashlight Spotlight -->
+  <div id="flashlight-glow"></div>
+
+  <!-- Interactive Particles Canvas -->
+  <canvas id="background-canvas"></canvas>
+
+  <!-- Floating Glassmorphic Top Nav Pill Bar -->
+  <div class="nav-pill-wrapper reveal">
+    <nav class="nav-pill">
+      <a href="index.html" class="nav-brand">
+        <img src="zephyrlogo.jpg" alt="ZephyrDevs Logo" class="nav-brand-img">
+        <div>Zephyr<span>Devs</span></div>
+      </a>
+      
+      <!-- Desktop Navigation links -->
+      <div class="nav-links-container">
+        <div class="nav-indicator"></div>
+        <div class="nav-link-item" onclick="navigateTo('index.html')">Home</div>
+        <div class="nav-link-item" onclick="navigateTo('services.html')">Services</div>
+        <div class="nav-link-item" onclick="navigateTo('pricing.html')">Pricing</div>
+        <div class="nav-link-item" onclick="navigateTo('contact.html')">Start Project</div>
+      </div>
+
+      <!-- Let's Talk CTA button -->
+      <button class="nav-cta-btn" onclick="navigateTo('contact.html')">Let's Talk</button>
+      
+      <!-- Mobile menu hamburger button -->
+      <button class="nav-burger" id="nav-burger-btn" aria-label="Toggle Navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </nav>
+  </div>
+
+  <!-- Mobile Drawer Menu Overlay -->
+  <div class="mobile-drawer" id="mobile-drawer-menu">
+    <div class="mobile-nav-link" onclick="navigateTo('index.html')">Home</div>
+    <div class="mobile-nav-link" onclick="navigateTo('services.html')">Services</div>
+    <div class="mobile-nav-link" onclick="navigateTo('pricing.html')">Pricing</div>
+    <div class="mobile-nav-link" onclick="navigateTo('contact.html')">Start Project</div>
+  </div>
+
+  <!-- Main Content -->
+  <main class="container" style="padding-top: 180px; padding-bottom: 100px;">
+    <!-- Page Header -->
+    <div class="section-header reveal">
+      <span class="section-subtitle">What We Do</span>
+      <h1 class="section-title">Our Capabilities</h1>
+      <p>We blend minimalist design paradigms with high-tech engineering to create applications that feel premium and run fast.</p>
+    </div>
+
+    <!-- Services Grid -->
+    <div class="services-list" style="margin-top: 40px;">
+      <!-- Frontend Card -->
+      <div class="service-card glass-panel reveal reveal-left" style="margin-bottom: 24px;">
+        <div class="service-header-card">
+          <div class="service-num">01</div>
+          <h3 class="service-title">Bespoke Frontend Development</h3>
+        </div>
+        <p>
+          We construct responsive, accessible, and animation-rich user interfaces. Prioritizing pure performance, we write lean HTML5, modern CSS with smooth grids, and responsive vanilla JS layouts.
+        </p>
+        <ul class="service-features-list">
+          <li>Mobile-First Responsive Frameworks</li>
+          <li>Mac-Styled & Glassmorphic Dashboards</li>
+          <li>Performance Optimization (SEO & Web Vitals)</li>
+          <li>Vanilla JS Scroll Reveals & Micro-animations</li>
+        </ul>
+      </div>
+
+      <!-- Backend Card -->
+      <div class="service-card glass-panel reveal reveal-right" style="margin-bottom: 24px;">
+        <div class="service-header-card">
+          <div class="service-num">02</div>
+          <h3 class="service-title">Backend Architecture & APIs</h3>
+        </div>
+        <p>
+          Need a robust logic layer for your product? We build high-throughput backend server routes and deploy serverless functions, handling user sessions, secure authentications, and data syncing.
+        </p>
+        <ul class="service-features-list">
+          <li>Node.js API Development & Deployment</li>
+          <li>Firebase Realtime Database & Firestore Sync</li>
+          <li>Firebase User Authentication & Authorization</li>
+          <li>Scalable Serverless Cloud Infrastructure</li>
+        </ul>
+      </div>
+
+      <!-- AI Integration Card -->
+      <div class="service-card glass-panel reveal reveal-left" style="margin-bottom: 24px;">
+        <div class="service-header-card">
+          <div class="service-num">03</div>
+          <h3 class="service-title">AI & LLM Systems Integration</h3>
+        </div>
+        <p>
+          Inject intelligence directly into your app. We wire your systems with large language models, enabling context-aware chat, smart file analysis, auto-summarization, and semantic search.
+        </p>
+        <ul class="service-features-list">
+          <li>Google Gemini API Pipeline Setup</li>
+          <li>Anthropic Claude Intelligent agents</li>
+          <li>Custom Prompt Engineering & Pipelines</li>
+          <li>Vector Search & Context Retrieval</li>
+        </ul>
+      </div>
+
+      <!-- Design Systems Card -->
+      <div class="service-card glass-panel reveal reveal-right" style="margin-bottom: 24px;">
+        <div class="service-header-card">
+          <div class="service-num">04</div>
+          <h3 class="service-title">Interactive Design Systems</h3>
+        </div>
+        <p>
+          A great product starts with a consistent visual language. We design full style components, interactive prototypes, and design systems featuring custom shadows, cursors, and layouts.
+        </p>
+        <ul class="service-features-list">
+          <li>Sleek Dark Mode and Neon Accents</li>
+          <li>Top nav Pill active tracking indicator menus</li>
+          <li>Custom SVG Brand Assets & Graphics</li>
+          <li>UI Component Library & Style Tokens</li>
+        </ul>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer Section -->
+  <footer>
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="logo-link">
+          <img src="zephyrlogo.jpg" alt="ZephyrDevs Logo" class="nav-brand-img">
+          <div class="logo-text" style="font-family: var(--font-title); font-size: 1.25rem; font-weight: 800;">Zephyr<span style="color: var(--neon-cyan);">Devs</span></div>
+        </a>
+        <p>Blowing fresh design and AI-driven intelligence into modern digital spaces. Clean code, responsive screens, lightning speed.</p>
+      </div>
+      <div class="footer-links">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="pricing.html">Pricing Plans</a></li>
+          <li><a href="contact.html">Start a Project</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h4>Contact Us</h4>
+        <ul>
+          <li>Email: <a href="mailto:Zephyrdevsofficial@gmail.com" style="color: var(--neon-cyan);">Zephyrdevsofficial@gmail.com</a></li>
+          <li>Instagram: <a href="https://instagram.com/zephyrdevs" target="_blank" rel="noopener">@zephyrdevs</a></li>
+          <li>Location: Globally Distributed</li>
+        </ul>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <div>&copy; 2026 ZephyrDevs. All rights reserved. Made with &hearts; by Akshansh, Aarav & Arshh.</div>
+      <div class="footer-social-icons">
+        <a href="https://instagram.com/zephyrdevs" target="_blank" rel="noopener" aria-label="Instagram">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>
