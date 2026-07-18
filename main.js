@@ -37,6 +37,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // 13. Live Website Preview Modal
   initLivePreviewModal();
+
+  // 14. Email Privacy Protection (Obfuscation)
+  initEmailObfuscation();
 });
 
 /* =========================================================================
@@ -45,6 +48,14 @@ document.addEventListener('DOMContentLoaded', () => {
 function initCanvasBackground() {
   const canvas = document.getElementById('background-canvas');
   if (!canvas) return;
+
+  // Disable canvas animation loop on mobile for maximum scroll optimization
+  if (window.innerWidth < 768) {
+    canvas.style.display = 'none';
+    const glow = document.getElementById('flashlight-glow');
+    if (glow) glow.style.display = 'none';
+    return;
+  }
 
   const ctx = canvas.getContext('2d');
   let particles = [];
@@ -920,6 +931,16 @@ if (document.readyState === 'complete') {
    9. Custom Devreon Interactive Features
    ========================================================================= */
 function initDevreonBackdrop() {
+  const dot = document.querySelector('.cursor-dot');
+  const ring = document.querySelector('.cursor-ring');
+
+  // Disable custom cursor and tracking on mobile devices (prevents lag and touch delays)
+  if (window.innerWidth < 768) {
+    if (dot) dot.style.display = 'none';
+    if (ring) ring.style.display = 'none';
+    return;
+  }
+
   // Mouse interactive grid spotlight position
   window.addEventListener('mousemove', (e) => {
     document.documentElement.style.setProperty('--mouse-x', `${(e.clientX / window.innerWidth) * 100}%`);
@@ -927,8 +948,6 @@ function initDevreonBackdrop() {
   });
 
   // Custom cursor movement
-  const dot = document.querySelector('.cursor-dot');
-  const ring = document.querySelector('.cursor-ring');
   if (dot && ring) {
     window.addEventListener('mousemove', (e) => {
       dot.style.left = `${e.clientX}px`;
@@ -2159,4 +2178,25 @@ function openLivePreview(url, title, event) {
 
   iframe.src = url;
   modal.classList.add('open');
+}
+
+/* =========================================================================
+   15. Email Privacy Protection (Obfuscation)
+   ========================================================================= */
+function initEmailObfuscation() {
+  const elements = document.querySelectorAll('.obfuscated-email');
+  elements.forEach(el => {
+    const user = el.getAttribute('data-user') || 'zephyrdevsofficial';
+    const domain = el.getAttribute('data-domain') || 'gmail.com';
+    const email = `${user}@${domain}`;
+    
+    if (el.tagName === 'A') {
+      el.href = `mailto:${email}`;
+      if (!el.textContent.trim()) {
+        el.textContent = email;
+      }
+    } else {
+      el.textContent = email;
+    }
+  });
 }
