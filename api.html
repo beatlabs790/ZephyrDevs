@@ -107,6 +107,9 @@
       db.ref('/activityLogs').on('value', (snap) => {
         window.parent.postMessage({ type: 'dbUpdate', key: 'activityLogs', val: snap.val() }, '*');
       });
+      db.ref('/loadingText').on('value', (snap) => {
+        window.parent.postMessage({ type: 'dbUpdate', key: 'loadingText', val: snap.val() }, '*');
+      });
       
       // Listen to custom config updates on the registry
       let isInitialConfigLoad = true;
@@ -140,6 +143,11 @@
         } else if (action === 'updatePassword') {
           await db.ref('/password').set(data);
           await addAuditLog('Security password updated');
+          result = { success: true };
+        } else if (action === 'updateLoadingText') {
+          await db.ref('/loadingText').set(data);
+          const safeStr = data ? data.substring(0, 20) : '';
+          await addAuditLog(`Loading text updated to: "${safeStr}..."`);
           result = { success: true };
         } else if (action === 'updateThemeAccent') {
           await db.ref('/themeAccent').set(data);

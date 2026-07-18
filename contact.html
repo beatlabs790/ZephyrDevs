@@ -4,9 +4,23 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Start Project | ZephyrDevs</title>
-  <meta name="description" content="Get in touch with ZephyrDevs to build your next web application. Fill out our interactive project planner and connect with us directly.">
+  <meta name="description" content="Connect with ZephyrDevs to build your next custom web application. Complete our interactive project planner to receive a custom development timeline.">
+  <meta name="keywords" content="hire web developer, start project, custom web app, hire Node programmer, hire AI integration agency, Google Gemini developer, hire Claude specialist">
+  <link rel="canonical" href="https://zephyr-devs.vercel.app/contact.html">
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://zephyr-devs.vercel.app/contact.html">
+  <meta property="og:title" content="Start Project | ZephyrDevs">
+  <meta property="og:description" content="Connect with ZephyrDevs to build your next custom web application. Complete our interactive project planner to receive a custom development timeline.">
+  <meta property="og:image" content="https://zephyr-devs.vercel.app/zephyrlogo.jpg">
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://zephyr-devs.vercel.app/contact.html">
+  <meta property="twitter:title" content="Start Project | ZephyrDevs">
+  <meta property="twitter:description" content="Connect with ZephyrDevs to build your next custom web application. Complete our interactive project planner to receive a custom development timeline.">
+  <meta property="twitter:image" content="https://zephyr-devs.vercel.app/zephyrlogo.jpg">
   <link rel="stylesheet" href="style.css">
-    <link rel="icon" type="image/jpeg" href="zephyrlogo.jpg">
+  <link rel="icon" type="image/jpeg" href="zephyrlogo.jpg">
 </head>
 <body class="loading-active">
   <!-- Grain Overlay -->
@@ -100,48 +114,100 @@
             </div>
           </div>
 
-          <div class="form-group">
-            <label for="contact-company">Company / Brand Name</label>
-            <input type="text" id="contact-company" name="company" class="form-input" placeholder="ZephyrDevs Corp">
-          </div>
-
-          <!-- Budget Range Slider -->
-          <div class="form-group">
-            <label for="project-budget">Estimated Budget</label>
-            <input type="range" id="project-budget" class="range-slider" min="0" max="500000" step="5000" value="50000">
-            <div style="font-weight: 600; font-size: 0.9rem; color: var(--neon-green); margin-bottom: 4px;">
-              Target: <span id="budget-display">Starter Web App (₹15,000 - ₹40,000)</span>
+          <div class="form-group-row">
+            <div class="form-group">
+              <label for="contact-company">Company / Brand Name</label>
+              <input type="text" id="contact-company" name="company" class="form-input" placeholder="ZephyrDevs Corp">
             </div>
-            <div class="budget-values" style="display: flex; justify-content: space-between; font-size: 0.75rem; color: var(--text-muted); font-family: var(--font-mono); margin-top: 4px;">
-              <span>Free (₹0)</span>
-              <span>₹1,50,000</span>
-              <span>₹3,00,000</span>
-              <span>₹5,00,000+</span>
+            <div class="form-group">
+              <label for="contact-phone">Phone Number *</label>
+              <input type="tel" id="contact-phone" name="phone" class="form-input" placeholder="+91 98765 43210" required>
             </div>
           </div>
 
-          <!-- Tech Stack preferences -->
+          <!-- Plan Card Selector -->
           <div class="form-group">
-            <label style="margin-bottom: 8px;">Preferred Technology (Select all that apply)</label>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 12px;">
-              <label style="display: flex; align-items: center; gap: 8px; font-size: 0.85rem; cursor: pointer; color: var(--text-secondary);">
-                <input type="checkbox" name="tech" value="html-css" checked style="accent-color: var(--neon-green);"> HTML5 / CSS3
-              </label>
-              <label style="display: flex; align-items: center; gap: 8px; font-size: 0.85rem; cursor: pointer; color: var(--text-secondary);">
-                <input type="checkbox" name="tech" value="vanilla-js" checked style="accent-color: var(--neon-green);"> Vanilla JS
-              </label>
-              <label style="display: flex; align-items: center; gap: 8px; font-size: 0.85rem; cursor: pointer; color: var(--text-secondary);">
-                <input type="checkbox" name="tech" value="node" style="accent-color: var(--neon-green);"> Node.js Backend
-              </label>
-              <label style="display: flex; align-items: center; gap: 8px; font-size: 0.85rem; cursor: pointer; color: var(--text-secondary);">
-                <input type="checkbox" name="tech" value="firebase" style="accent-color: var(--neon-green);"> Firebase Cloud
-              </label>
-              <label style="display: flex; align-items: center; gap: 8px; font-size: 0.85rem; cursor: pointer; color: var(--text-secondary);">
-                <input type="checkbox" name="tech" value="gemini" style="accent-color: var(--neon-green);"> Google Gemini AI
-              </label>
-              <label style="display: flex; align-items: center; gap: 8px; font-size: 0.85rem; cursor: pointer; color: var(--text-secondary);">
-                <input type="checkbox" name="tech" value="claude" style="accent-color: var(--neon-green);"> Anthropic Claude
-              </label>
+            <label style="margin-bottom: 12px; display: block;">Select a Project Plan *</label>
+            <div class="plan-selector-grid">
+              <!-- Plan 1 Card -->
+              <div class="plan-selector-card active" data-plan="starter">
+                <input type="radio" name="project-plan" value="starter" checked style="display:none;">
+                <div class="plan-card-header">
+                  <span class="plan-name">Starter</span>
+                  <span class="plan-price">₹1,999/yr</span>
+                </div>
+                <p class="plan-desc">Fast landing pages & custom templates.</p>
+              </div>
+              
+              <!-- Plan 2 Card -->
+              <div class="plan-selector-card" data-plan="pro">
+                <input type="radio" name="project-plan" value="pro" style="display:none;">
+                <div class="plan-card-header">
+                  <span class="plan-name">Pro</span>
+                  <span class="plan-price">₹2,999/yr</span>
+                </div>
+                <p class="plan-desc">Multi-page apps & database builds.</p>
+              </div>
+              
+              <!-- Plan 3 Card -->
+              <div class="plan-selector-card" data-plan="enterprise">
+                <input type="radio" name="project-plan" value="enterprise" style="display:none;">
+                <div class="plan-card-header">
+                  <span class="plan-name">Enterprise</span>
+                  <span class="plan-price">₹4,999/yr</span>
+                </div>
+                <p class="plan-desc">Advanced custom portals & full AI integration.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Add-on options calculator -->
+          <div class="form-group" style="margin-top: 24px;">
+            <label style="margin-bottom: 12px; display: block;">Select Add-ons (Optional)</label>
+            <div class="addons-grid">
+              <div class="addon-card" data-price="5000" data-id="cms">
+                <div class="addon-checkbox-wrap">
+                  <input type="checkbox" name="addons" value="cms" class="addon-checkbox" style="display:none;">
+                  <span class="addon-check-indicator"></span>
+                </div>
+                <div class="addon-info">
+                  <div class="addon-name">Custom CMS</div>
+                  <div class="addon-desc">Content manager integration.</div>
+                </div>
+                <div class="addon-price">+₹5,000</div>
+              </div>
+
+              <div class="addon-card" data-price="2000" data-id="speed">
+                <div class="addon-checkbox-wrap">
+                  <input type="checkbox" name="addons" value="speed" class="addon-checkbox" style="display:none;">
+                  <span class="addon-check-indicator"></span>
+                </div>
+                <div class="addon-info">
+                  <div class="addon-name">Extra Speed Tuning</div>
+                  <div class="addon-desc">Max performance optimization.</div>
+                </div>
+                <div class="addon-price">+₹2,000</div>
+              </div>
+
+              <div class="addon-card" data-price="4500" data-id="logo">
+                <div class="addon-checkbox-wrap">
+                  <input type="checkbox" name="addons" value="logo" class="addon-checkbox" style="display:none;">
+                  <span class="addon-check-indicator"></span>
+                </div>
+                <div class="addon-info">
+                  <div class="addon-name">Custom Logo Design</div>
+                  <div class="addon-desc">Branding & visual elements.</div>
+                </div>
+                <div class="addon-price">+₹4,500</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Total Calculator display -->
+          <div class="form-group">
+            <div class="calculator-total-panel" style="margin-top: 8px; padding: 16px; background: #121316; border: 1px solid rgba(255,255,255,0.05); border-radius: 12px; display: flex; justify-content: space-between; align-items: center;">
+              <span style="font-family: var(--font-title); font-weight: 600; color: var(--text-secondary);">Estimated Total:</span>
+              <span id="estimated-total-value" style="font-family: var(--font-mono); font-size: 1.3rem; font-weight: 700; color: var(--neon-violet);">₹1,999</span>
             </div>
           </div>
 

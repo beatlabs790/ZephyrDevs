@@ -25,6 +25,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // 9. Initialize Firebase Proxy & Control Center
   initFirebaseProxy();
+
+  // 10. Bottom Tech Stack Announcement Ticker
+  initTechTicker();
+
+  // 11. Interactive Mock Chatbot
+  initChatbot();
+
+  // 12. Theme Switcher (Light/Dark Toggle)
+  initThemeToggle();
+
+  // 13. Live Website Preview Modal
+  initLivePreviewModal();
 });
 
 /* =========================================================================
@@ -51,9 +63,9 @@ function initCanvasBackground() {
 
   // 3 Layers of Particles for 3D Parallax Depth (Optimized)
   const layers = [
-    { count: Math.min(10, Math.floor(width / 150)), sizeRange: [4, 7], speedRange: [0.05, 0.12], opacity: 0.1, blur: true, colors: ['#12131c', '#082f1b'] }, // Background (Slow, large, pre-blurred gradient)
+    { count: Math.min(10, Math.floor(width / 150)), sizeRange: [4, 7], speedRange: [0.05, 0.12], opacity: 0.1, blur: true, colors: ['#12131c', '#270e3a'] }, // Background (Slow, large, pre-blurred gradient)
     { count: Math.min(18, Math.floor(width / 100)), sizeRange: [2, 3], speedRange: [0.12, 0.22], opacity: 0.3, blur: false, colors: ['#94a3b8', 'var(--neon-cyan)'] },  // Midground (Normal)
-    { count: Math.min(18, Math.floor(width / 100)), sizeRange: [1, 1.5], speedRange: [0.22, 0.4], opacity: 0.6, blur: false, colors: ['var(--neon-green)', 'var(--neon-violet)'] } // Foreground (Fast, glowing green)
+    { count: Math.min(18, Math.floor(width / 100)), sizeRange: [1, 1.5], speedRange: [0.22, 0.4], opacity: 0.6, blur: false, colors: ['var(--neon-green)', 'var(--neon-violet)'] } // Foreground (Fast, glowing violet/rose)
   ];
 
   const mouse = { x: null, y: null, radius: 180 };
@@ -379,33 +391,59 @@ function initScrollReveal() {
    4. Budget Range Slider Indicator (INR)
    ========================================================================= */
 function initBudgetSlider() {
-  const slider = document.getElementById('project-budget');
-  const display = document.getElementById('budget-display');
-  if (!slider || !display) return;
+  const planCards = document.querySelectorAll('.plan-selector-card');
+  const addonCards = document.querySelectorAll('.addon-card');
+  const totalValueEl = document.getElementById('estimated-total-value');
+  if (planCards.length === 0) return;
 
-  const budgetTiers = [
-    { max: 0, label: 'Free Tier / MVP' },
-    { max: 40000, label: 'Starter Web App (₹15,000 - ₹40,000)' },
-    { max: 150000, label: 'Custom Web App + Node Backend (₹40,000 - ₹1,50,000)' },
-    { max: 300000, label: 'Enterprise App + Google AI (₹1,50,000 - ₹3,00,000)' },
-    { max: 500000, label: 'Custom dual-LLM Architecture (₹3,00,000 - ₹5,00,000+)' },
-  ];
+  const basePrices = {
+    starter: 1999,
+    pro: 2999,
+    enterprise: 4999
+  };
 
-  function updateLabel() {
-    const val = parseInt(slider.value);
-    let matchedLabel = budgetTiers[budgetTiers.length - 1].label;
-
-    for (const tier of budgetTiers) {
-      if (val <= tier.max) {
-        matchedLabel = tier.label;
-        break;
-      }
+  function calculateTotal() {
+    let total = 0;
+    const activePlan = document.querySelector('.plan-selector-card.active');
+    if (activePlan) {
+      const planVal = activePlan.dataset.plan;
+      total += basePrices[planVal] || 1999;
     }
-    display.textContent = matchedLabel;
+
+    addonCards.forEach(card => {
+      const checkbox = card.querySelector('.addon-checkbox');
+      if (checkbox && checkbox.checked) {
+        total += parseInt(card.dataset.price) || 0;
+      }
+    });
+
+    if (totalValueEl) {
+      totalValueEl.textContent = `₹${total.toLocaleString('en-IN')}`;
+    }
   }
 
-  slider.addEventListener('input', updateLabel);
-  updateLabel();
+  planCards.forEach(card => {
+    card.addEventListener('click', () => {
+      planCards.forEach(c => c.classList.remove('active'));
+      card.classList.add('active');
+      const radio = card.querySelector('input[type="radio"]');
+      if (radio) radio.checked = true;
+      calculateTotal();
+    });
+  });
+
+  addonCards.forEach(card => {
+    card.addEventListener('click', () => {
+      const checkbox = card.querySelector('.addon-checkbox');
+      if (checkbox) {
+        checkbox.checked = !checkbox.checked;
+        card.classList.toggle('active', checkbox.checked);
+        calculateTotal();
+      }
+    });
+  });
+
+  calculateTotal();
 }
 
 /* =========================================================================
@@ -421,15 +459,22 @@ function initContactForm() {
     const name = document.getElementById('contact-name').value;
     const email = document.getElementById('contact-email').value;
     const company = document.getElementById('contact-company').value;
+    const phone = document.getElementById('contact-phone').value;
     const desc = document.getElementById('project-desc').value;
     
-    const budgetDisplay = document.getElementById('budget-display');
-    const budgetText = budgetDisplay ? budgetDisplay.textContent : 'Not Specified';
+    const activeCard = document.querySelector('.plan-selector-card.active');
+    const planText = activeCard ? `${activeCard.querySelector('.plan-name').textContent.trim()} (${activeCard.querySelector('.plan-price').textContent.trim()})` : 'Starter (₹1,999/yr)';
 
-    const techList = [];
-    document.querySelectorAll('input[name="tech"]:checked').forEach(checkbox => {
-      techList.push(checkbox.parentNode.textContent.trim());
+    const selectedAddons = [];
+    document.querySelectorAll('input[name="addons"]:checked').forEach(cb => {
+      const addonCard = cb.closest('.addon-card');
+      if (addonCard) {
+        selectedAddons.push(addonCard.querySelector('.addon-name').textContent.trim());
+      }
     });
+
+    const totalValueEl = document.getElementById('estimated-total-value');
+    const totalText = totalValueEl ? totalValueEl.textContent : '₹1,999';
 
     // Display loading state on submit button
     const submitBtn = form.querySelector('button[type="submit"]');
@@ -441,9 +486,11 @@ function initContactForm() {
     const payload = {
       name: name,
       email: email,
+      phone: phone,
       company: company || 'N/A',
-      budget: budgetText,
-      technologies: techList.join(', '),
+      selectedPlan: planText,
+      addonsSelected: selectedAddons.join(', ') || 'None',
+      estimatedTotal: totalText,
       description: desc
     };
 
@@ -474,8 +521,17 @@ function initContactForm() {
           </div>
         `);
         form.reset();
-        const budgetSlider = document.getElementById('project-budget');
-        if (budgetSlider) budgetSlider.dispatchEvent(new Event('input'));
+        
+        // Reset addon cards UI
+        document.querySelectorAll('.addon-card').forEach(card => {
+          const cb = card.querySelector('.addon-checkbox');
+          if (cb) cb.checked = false;
+          card.classList.remove('active');
+        });
+        
+        // Reset plan selector to default (Starter)
+        const defaultCard = document.querySelector('.plan-selector-card[data-plan="starter"]');
+        if (defaultCard) defaultCard.click();
       } else {
         throw new Error('Formspree response not ok');
       }
@@ -490,9 +546,11 @@ function initContactForm() {
         `Hi ZephyrDevs,\n\n` +
         `My name is ${name}.\n` +
         `Email: ${email}\n` +
+        `Phone: ${phone}\n` +
         `Company: ${company || 'N/A'}\n` +
-        `Budget: ${budgetText}\n` +
-        `Tech Preferred: ${techList.join(', ')}\n\n` +
+        `Plan Selected: ${planText}\n` +
+        `Add-ons Selected: ${selectedAddons.join(', ') || 'None'}\n` +
+        `Estimated Total: ${totalText}\n\n` +
         `Project Description:\n${desc}`
       );
       window.location.href = `mailto:zephyrdevsofficial@gmail.com?subject=${subject}&body=${bodyText}`;
@@ -749,17 +807,14 @@ function handlePageLoad() {
   const urlParams = new URLSearchParams(window.location.search);
   const selectedPlan = urlParams.get('plan');
   if (selectedPlan) {
+    const planName = (selectedPlan === 'free') ? 'starter' : selectedPlan;
     const descTextarea = document.getElementById('project-desc');
-    const budgetSlider = document.getElementById('project-budget');
     if (descTextarea) {
-      descTextarea.value = `I am interested in starting a project using the [${selectedPlan.toUpperCase()} Plan]. `;
+      descTextarea.value = `I am interested in starting a project using the [${planName.toUpperCase()} Plan]. `;
     }
-    if (budgetSlider) {
-      if (selectedPlan === 'free') budgetSlider.value = 0;
-      else if (selectedPlan === 'pro') budgetSlider.value = 40000;
-      else if (selectedPlan === 'enterprise') budgetSlider.value = 150000;
-      
-      budgetSlider.dispatchEvent(new Event('input'));
+    const targetPlanCard = document.querySelector(`.plan-selector-card[data-plan="${planName}"]`);
+    if (targetPlanCard) {
+      targetPlanCard.click();
     }
   }
   
@@ -907,6 +962,7 @@ let dbState = {
   announcement: { active: false, text: '' },
   team: {},
   password: 'admin00', // Default fallback
+  loadingText: 'We Levlled Up.',
   customConfig: null,
   themeAccent: 'lime',
   activityLogs: []
@@ -975,6 +1031,8 @@ window.initFirebaseProxy = function () {
         applyThemeAccent(val);
       } else if (key === 'activityLogs') {
         renderActivityLogs(val);
+      } else if (key === 'loadingText') {
+        handleLoadingTextUpdate(val);
       } else if (key === 'customConfig') {
         // If Firebase active config is not ready yet, ignore initial load updates
         if (!window.activeFirebaseConfig) {
@@ -1061,6 +1119,14 @@ async function initializeDefaultDataIfEmpty() {
     await firebaseCall('initializeDefaultData', defaultDbData);
   } catch (err) {
     console.error('Failed to initialize default DB data:', err);
+  }
+}
+
+// ---------------------- Loading Text Update ----------------------
+function handleLoadingTextUpdate(val) {
+  const loadingTextEl = document.querySelector('.intro-loading-text');
+  if (loadingTextEl) {
+    loadingTextEl.innerText = val || 'We Levlled Up.';
   }
 }
 
@@ -1228,6 +1294,14 @@ function injectAdminModals() {
           </div>
 
           <div style="background: rgba(255,255,255,0.02); padding: 20px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.04); margin-bottom: 20px;">
+            <div class="admin-form-group">
+              <label for="admin-loading-text">Cinematic Loading Text</label>
+              <input type="text" id="admin-loading-text" class="admin-input" placeholder="e.g. We Levlled Up.">
+            </div>
+            <button class="admin-btn" style="padding: 8px 16px; font-size: 0.8rem;" onclick="saveLoadingTextSettings()">Save Loading Text</button>
+          </div>
+
+          <div style="background: rgba(255,255,255,0.02); padding: 20px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.04); margin-bottom: 20px;">
             <h4 style="color:#fff; margin-bottom:15px; font-size:0.9rem; font-family:var(--font-mono); text-transform:uppercase;">security credentials</h4>
             <div class="admin-form-group">
               <label for="admin-new-pw-input">Change Admin Password</label>
@@ -1390,6 +1464,9 @@ function showAdminDashboard() {
     const aText = document.getElementById('admin-announcement-text');
     if (aText) aText.value = dbState.announcement ? dbState.announcement.text : '';
 
+    const lText = document.getElementById('admin-loading-text');
+    if (lText) lText.value = dbState.loadingText || '';
+
     const newPwInput = document.getElementById('admin-new-pw-input');
     if (newPwInput) newPwInput.value = '';
 
@@ -1462,6 +1539,17 @@ window.saveAnnouncementSettings = async function () {
   } catch (err) {
     console.error('Failed to update announcement:', err);
     alert('Failed to update announcement: ' + err.message);
+  }
+};
+
+window.saveLoadingTextSettings = async function () {
+  const text = document.getElementById('admin-loading-text').value.trim();
+  try {
+    await firebaseCall('updateLoadingText', text);
+    alert('Loading text updated.');
+  } catch (err) {
+    console.error('Failed to update loading text:', err);
+    alert('Failed to update loading text: ' + err.message);
   }
 };
 
@@ -1715,4 +1803,360 @@ function applyThemeAccent(theme) {
   }
 }
 
+/* =========================================================================
+   UI Redesign Interactions (Bento, Magnetic, Nav)
+   ========================================================================= */
 
+document.addEventListener('DOMContentLoaded', () => {
+  // Bento Panel Mouse Tracking
+  const updateBentoMouse = (e) => {
+    document.querySelectorAll('.bento-panel').forEach(panel => {
+      const rect = panel.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      panel.style.setProperty('--mouse-x', `${x}px`);
+      panel.style.setProperty('--mouse-y', `${y}px`);
+    });
+  };
+  window.addEventListener('mousemove', updateBentoMouse);
+
+  // Magnetic Buttons
+  document.querySelectorAll('.btn').forEach(btn => {
+    btn.addEventListener('mousemove', (e) => {
+      const rect = btn.getBoundingClientRect();
+      const x = e.clientX - rect.left - rect.width / 2;
+      const y = e.clientY - rect.top - rect.height / 2;
+      btn.style.transform = `translate(${x * 0.2}px, ${y * 0.2}px)`;
+    });
+    btn.addEventListener('mouseleave', () => {
+      btn.style.transform = `translate(0px, 0px)`;
+    });
+  });
+
+  // Staggered Reveal Observer
+  const bentoObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry, index) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => {
+          entry.target.classList.add('active');
+        }, index * 100);
+        bentoObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.bento-reveal').forEach(el => bentoObserver.observe(el));
+
+  // Dynamic Floating Navbar
+  const navPill = document.querySelector('.nav-pill');
+  if (navPill) {
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        navPill.style.padding = '10px 20px';
+        navPill.style.background = 'rgba(10, 11, 28, 0.85)';
+        navPill.style.boxShadow = '0 10px 30px rgba(0, 0, 0, 0.5)';
+      } else {
+        navPill.style.padding = '14px 24px';
+        navPill.style.background = 'rgba(10, 11, 28, 0.65)';
+        navPill.style.boxShadow = '0 8px 32px rgba(0, 0, 0, 0.2)';
+      }
+    });
+  }
+});
+
+/* =========================================================================
+   11. Tech Stack Announcement Ticker
+   ========================================================================= */
+function initTechTicker() {
+  const tickerWrap = document.createElement('div');
+  tickerWrap.className = 'tech-ticker-wrap';
+
+  const techs = [
+    { name: 'HTML5', logo: '<svg viewBox="0 0 24 24"><path d="M1.5 0h21l-1.91 21.563L11.977 24l-8.564-2.438L1.5 0zm7.031 9.75l-.232-2.718 10.059.003.23-2.622L5.412 4.41l.698 8.01h9.126l-.326 3.426-2.91.804-2.955-.81-.188-2.11H6.248l.33 4.171L12 19.351l5.379-1.443.744-8.157H8.531z"/></svg>' },
+    { name: 'CSS3', logo: '<svg viewBox="0 0 24 24"><path d="M1.5 0h21l-1.91 21.563L11.977 24l-8.565-2.438L1.5 0zm17.09 4.413L5.41 4.41l.213 2.622 10.125.002-.255 2.716h-6.64l.24 2.573h6.182l-.366 3.523-2.91.804-2.956-.81-.188-2.11h-2.61l.29 3.855L12 19.288l5.373-1.53L18.59 4.414z"/></svg>' },
+    { name: 'JavaScript', logo: '<svg viewBox="0 0 24 24"><path d="M0 0h24v24H0V0zm22.034 18.276c-.175-1.095-.888-2.015-3.003-2.873-.736-.345-1.554-.585-1.797-1.14-.091-.33-.105-.51-.046-.705.15-.646.915-.84 1.515-.66.39.12.75.42.976.9 1.034-.676 1.034-.676 1.755-1.125-.27-.42-.404-.601-.586-.78-.63-.705-1.469-1.065-2.834-1.034l-.705.089c-.676.165-1.32.525-1.71 1.005-1.14 1.291-.811 3.541.569 4.471 1.365 1.02 3.361 1.244 3.616 2.205.24 1.17-.87 1.545-1.966 1.41-.811-.18-1.26-.586-1.755-1.336l-1.83 1.051c.21.48.45.689.81 1.109 1.74 1.756 6.09 1.666 6.871-1.004.029-.09.24-.705.074-1.65l.046.067zm-8.983-7.245h-2.248c0 1.938-.009 3.864-.009 5.805 0 1.232.063 2.363-.138 2.711-.33.689-1.18.601-1.566.48-.396-.196-.597-.466-.83-.855-.063-.105-.11-.196-.127-.196l-1.825 1.125c.305.63.75 1.172 1.324 1.517.855.51 2.004.675 3.207.405.783-.226 1.458-.691 1.811-1.411.51-.93.402-2.07.397-3.346.012-2.054 0-4.109 0-6.179l.004-.056z"/></svg>' },
+    { name: 'Node.js', logo: '<svg viewBox="0 0 24 24"><path d="M12 24c-.3 0-.6-.1-.9-.2l-2.9-1.7c-.4-.2-.2-.3-.1-.4.6-.2.7-.3 1.3-.6.1 0 .2 0 .2.1l2.3 1.3c.1 0 .2 0 .3 0l8.8-5.1c.1-.1.1-.1.1-.2V6.9c0-.1-.1-.2-.1-.2L12.2 1.6c-.1 0-.2 0-.3 0L3.1 6.7c-.1 0-.2.1-.2.2v10.2c0 .1.1.2.1.2l2.4 1.4c1.3.7 2.1-.1 2.1-.9V7.8c0-.1.1-.3.3-.3h1.1c.1 0 .3.1.3.3v10c0 1.7-1 2.7-2.6 2.7-.5 0-.9 0-2-.6L2.3 18.7c-.6-.3-.9-1-.9-1.6V6.9c0-.7.4-1.3.9-1.6l8.8-5.1c.6-.3 1.3-.3 1.8 0l8.8 5.1c.6.3.9 1 .9 1.6v10.2c0 .7-.4 1.3-.9 1.6l-8.8 5.1c-.2.1-.5.2-.8.2z"/></svg>' },
+    { name: 'Firebase', logo: '<svg viewBox="0 0 24 24"><path d="M3.9 15.8L2.1 5.4c-.1-.3.2-.5.5-.3l2 1.8 2.9 2.8-3.6 6.1zM21.2 12.3l-2.1-4.2-1.2-2.4c-.1-.3-.6-.3-.7 0L12.5 14.9 9.2 8.7c-.1-.3-.6-.3-.7 0L3.4 18.3c-.1.2 0 .5.3.4l13.8-1.5 3.7-4.4c.2-.2.2-.4 0-.5z"/></svg>' },
+    { name: 'Gemini AI', logo: '<svg viewBox="0 0 24 24"><path d="M11 19.3Q12 21.5 12 24q0-2.5 1-4.7 1-2.2 2.6-3.8 1.6-1.6 3.8-2.6Q21.5 12 24 12q-2.5 0-4.7-1a12.3 12.3 0 0 1-3.8-2.6 12.3 12.3 0 0 1-2.6-3.8Q12 2.5 12 0q0 2.5-1 4.7-1 2.2-2.6 3.8a12.3 12.3 0 0 1-3.8 2.6Q2.5 12 0 12q2.5 0 4.7 1 2.2 1 3.8 2.6t2.6 3.8"/></svg>' },
+    { name: 'Claude', logo: '<svg viewBox="0 0 24 24"><path d="M17.3 3.5h-3.7l6.7 16.9H24Zm-10.6 0L0 20.5h3.7l1.4-3.6h7l1.4 3.6h3.7L10.5 3.5ZM6.2 13.7l2.3-5.9 2.3 5.9Z"/></svg>' },
+    { name: 'OpenAI', logo: '<svg viewBox="0 0 24 24"><path d="M22.2 10.8c-.1-1.1-.5-2.1-1.1-3.1a5.3 5.3 0 0 0-3.3-2.1 5.3 5.3 0 0 0-4.6 1.4L12 9.1l-1.2-2c-.9-1.5-2.4-2.4-4-2.4-.2 0-.4 0-.6.1a5.3 5.3 0 0 0-3.3 2.1c-.9 1-1.3 2.1-1.1 3.1a5.3 5.3 0 0 0 1.5 3.9L5.4 16.3l1.2 2a5.2 5.2 0 0 0 3.9 1.6c.2 0 .4 0 .6-.1a5.3 5.3 0 0 0 3.3-2.1c.9-1 1.3-2.1 1.1-3.1a5.3 5.3 0 0 0-1.5-3.9l-2-1.2-1.2-2c0-.1-.1-.1-.2-.2a.4.4 0 0 0-.4 0c0 .1-.1.1-.2.2L12 7l-1.2 2a.4.4 0 0 0 0 .4c0 .1.1.1.2.2a.4.4 0 0 0 .4 0c.1 0 .1-.1.2-.2l1.2-2 2 1.2a5.3 5.3 0 0 0 1.6 3.9 5.3 5.3 0 0 0-1.1 3.2 5.3 5.3 0 0 0-3.3 2.1c-.2.1-.4.1-.6.1a5.2 5.2 0 0 0-3.9-1.6l-1.2-2-2-1.2a5.3 5.3 0 0 0-1.6-3.9c.2 1 .6 2.1 1.1 3.1a5.3 5.3 0 0 0 3.3 2.1c.2 0 .4.1.6.1a5.2 5.2 0 0 0 3.9-1.6l1.2-2 1.2-2a5.2 5.2 0 0 0 3.9 1.6c.2 0 .4 0 .6-.1a5.3 5.3 0 0 0 3.3-2.1c.9-1 1.3-2.1 1.1-3.1a5.3 5.3 0 0 0-1.5-3.9l-2-1.2-1.2-2a5.2 5.2 0 0 0-3.9-1.6c-.2 0-.4 0-.6.1a5.3 5.3 0 0 0-3.3 2.1c-.9 1-1.3 2.1-1.1 3.1a5.3 5.3 0 0 0 1.5 3.9l2 1.2z"/></svg>' },
+    { name: 'Vercel', logo: '<svg viewBox="0 0 24 24"><path d="M24 22.5H0L12 1.5l12 21z"/></svg>' },
+    { name: 'Tailwind CSS', logo: '<svg viewBox="0 0 24 24"><path d="M12 6.036c-2.402 0-3.602 1.201-3.602 3.602 0 2.402 1.2 3.602 3.602 3.602 2.4 0 3.6-1.2 3.6-3.602 0-2.401-1.2-3.602-3.6-3.602zM6 12.036c-2.4 0-3.6 1.201-3.6 3.602 0 2.402 1.2 3.602 3.602 3.602 2.4 0 3.6-1.2 3.6-3.602 0-2.401-1.2-3.602-3.6-3.602z"/></svg>' }
+  ];
+
+  const repeated = [...techs, ...techs];
+  const listItems = repeated.map(tech => `<span>${tech.logo}${tech.name}</span>`).join('<span class="ticker-dot"></span>');
+
+  tickerWrap.innerHTML = `
+    <div class="tech-ticker-content">
+      ${listItems}
+    </div>
+  `;
+
+  const footer = document.querySelector('footer');
+  if (footer) {
+    footer.parentNode.insertBefore(tickerWrap, footer);
+  } else {
+    document.body.appendChild(tickerWrap);
+  }
+}
+
+/* =========================================================================
+   12. Interactive Mock Chatbot
+   ========================================================================= */
+function initChatbot() {
+  const chatbotContainer = document.createElement('div');
+  chatbotContainer.className = 'chatbot-widget-container';
+
+  chatbotContainer.innerHTML = `
+    <!-- Trigger Button -->
+    <div class="chatbot-trigger" id="chat-trigger">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+    </div>
+
+    <!-- Chat window -->
+    <div class="chatbot-window" id="chat-window">
+      <div class="chatbot-header">
+        <div class="chatbot-profile">
+          <div class="chatbot-avatar">Z</div>
+          <div class="chatbot-info">
+            <h4>Zephyr Assistant</h4>
+            <div class="chatbot-status">Online</div>
+          </div>
+        </div>
+        <button class="chatbot-close" id="chat-close">&times;</button>
+      </div>
+
+      <div class="chatbot-messages" id="chat-messages-area">
+        <div class="chat-msg bot">
+          Hey there! 👋 I am the Zephyr assistant. How can I help you build your next project today?
+        </div>
+      </div>
+
+      <div class="chatbot-suggestions">
+        <p>Quick Questions</p>
+        <button class="chat-suggest-btn" data-key="starter">Tell me about the Starter Plan (₹1,999/yr)</button>
+        <button class="chat-suggest-btn" data-key="pro">Tell me about the Pro Plan (₹2,999/yr)</button>
+        <button class="chat-suggest-btn" data-key="enterprise">Tell me about the Enterprise Plan (₹4,999/yr)</button>
+        <button class="chat-suggest-btn" data-key="contact">How do I start a project?</button>
+      </div>
+
+      <div class="chatbot-input-area">
+        <input type="text" class="chatbot-input" id="chat-user-input" placeholder="Type a message...">
+        <button class="chatbot-send" id="chat-send-btn">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+        </button>
+      </div>
+    </div>
+  `;
+
+  document.body.appendChild(chatbotContainer);
+
+  const trigger = document.getElementById('chat-trigger');
+  const windowEl = document.getElementById('chat-window');
+  const closeBtn = document.getElementById('chat-close');
+  const messagesArea = document.getElementById('chat-messages-area');
+  const suggestBtns = chatbotContainer.querySelectorAll('.chat-suggest-btn');
+  const userInput = document.getElementById('chat-user-input');
+  const sendBtn = document.getElementById('chat-send-btn');
+
+  // Toggle open
+  trigger.addEventListener('click', () => {
+    windowEl.classList.toggle('open');
+  });
+
+  // Close
+  closeBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    windowEl.classList.remove('open');
+  });
+
+  const responses = {
+    starter: "Our **Starter plan (₹1,999/yr)** is designed for fast, high-performance static websites. It includes premium templates, responsive layout, hosting setup, and essential SEO integration.",
+    pro: "Our **Pro plan (₹2,999/yr)** offers dynamic multi-page custom websites. It includes database connections, interactive components, customized forms, and advanced SEO optimization.",
+    enterprise: "Our **Enterprise plan (₹4,999/yr)** is a fully tailored solution featuring complex databases, admin dashboards, and custom dual-LLM systems utilizing Google Gemini and Claude APIs.",
+    contact: "To start a project, simply go to the **Start Project** page in the navbar, select a plan, input your phone number, and submit. We'll get in touch with you shortly!"
+  };
+
+  function appendMessage(text, sender) {
+    const msg = document.createElement('div');
+    msg.className = `chat-msg ${sender}`;
+    msg.innerHTML = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+    messagesArea.appendChild(msg);
+    messagesArea.scrollTop = messagesArea.scrollHeight;
+  }
+
+  function handleBotResponse(key) {
+    // Show loading state
+    const loader = document.createElement('div');
+    loader.className = 'chat-msg bot typing-indicator';
+    loader.innerText = 'typing...';
+    messagesArea.appendChild(loader);
+    messagesArea.scrollTop = messagesArea.scrollHeight;
+
+    setTimeout(() => {
+      messagesArea.removeChild(loader);
+      const text = responses[key] || "Thanks for messaging! I'm an automated assistant. For custom queries, please reach out to **zephyrdevsofficial@gmail.com** or select one of the quick options above! 🚀";
+      appendMessage(text, 'bot');
+    }, 1000);
+  }
+
+  suggestBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const key = btn.dataset.key;
+      const text = btn.innerText;
+      appendMessage(text, 'user');
+      handleBotResponse(key);
+    });
+  });
+
+  function sendUserMsg() {
+    const val = userInput.value.trim();
+    if (!val) return;
+    appendMessage(val, 'user');
+    userInput.value = '';
+    handleBotResponse('custom');
+  }
+
+  sendBtn.addEventListener('click', sendUserMsg);
+  userInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+      sendUserMsg();
+    }
+  });
+}
+
+/* =========================================================================
+   13. Theme Switcher (Light/Dark Toggle)
+   ========================================================================= */
+function initThemeToggle() {
+  const navPill = document.querySelector('.nav-pill');
+  if (!navPill) return;
+
+  const btn = document.createElement('button');
+  btn.id = 'theme-toggle-btn';
+  btn.className = 'theme-toggle-btn';
+  btn.setAttribute('aria-label', 'Toggle light/dark theme');
+  btn.innerHTML = `
+    <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2"></path><path d="M12 20v2"></path><path d="M4.93 4.93l1.41 1.41"></path><path d="M17.66 17.66l1.41 1.41"></path><path d="M2 12h2"></path><path d="M20 12h2"></path><path d="M6.34 17.66l-1.41 1.41"></path><path d="M19.07 4.93l-1.41 1.41"></path></svg>
+    <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path></svg>
+  `;
+
+  const ctaBtn = navPill.querySelector('.nav-cta-btn') || navPill.querySelector('.nav-burger');
+  if (ctaBtn) {
+    navPill.insertBefore(btn, ctaBtn);
+  } else {
+    navPill.appendChild(btn);
+  }
+
+  const currentTheme = localStorage.getItem('theme') || 'dark';
+  if (currentTheme === 'light') {
+    document.body.classList.add('light-theme');
+    btn.querySelector('.sun-icon').style.display = 'none';
+    btn.querySelector('.moon-icon').style.display = 'block';
+  }
+
+  btn.addEventListener('click', () => {
+    const isLight = document.body.classList.toggle('light-theme');
+    localStorage.setItem('theme', isLight ? 'light' : 'dark');
+    
+    if (isLight) {
+      btn.querySelector('.sun-icon').style.display = 'none';
+      btn.querySelector('.moon-icon').style.display = 'block';
+    } else {
+      btn.querySelector('.sun-icon').style.display = 'block';
+      btn.querySelector('.moon-icon').style.display = 'none';
+    }
+  });
+}
+
+/* =========================================================================
+   14. Live Website Preview Modal
+   ========================================================================= */
+function initLivePreviewModal() {
+  if (document.getElementById('live-preview-modal')) return;
+
+  const modal = document.createElement('div');
+  modal.id = 'live-preview-modal';
+  modal.className = 'preview-modal';
+  modal.innerHTML = `
+    <div class="preview-modal-container">
+      <div class="preview-modal-header">
+        <div class="mac-controls">
+          <span class="mac-dot close-preview" style="background:#ff5f56; width:12px; height:12px; border-radius:50%; display:inline-block; cursor:pointer;" id="preview-mac-close"></span>
+          <span class="mac-dot minimize-preview" style="background:#ffbd2e; width:12px; height:12px; border-radius:50%; display:inline-block; margin-left:4px;"></span>
+          <span class="mac-dot maximize-preview" style="background:#27c93f; width:12px; height:12px; border-radius:50%; display:inline-block; margin-left:4px;"></span>
+        </div>
+        <div class="preview-address-bar">
+          <span class="preview-secure-lock">🔒</span>
+          <span id="preview-url-text">https://rajdarbars.vercel.app</span>
+        </div>
+        <button class="preview-tab-btn" id="preview-external-btn" title="Open in new tab">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+        </button>
+        <button class="preview-modal-close" id="preview-close-btn">&times;</button>
+      </div>
+      <div class="preview-modal-body">
+        <div class="preview-loader" id="preview-loader-el">
+          <svg class="loader-spinner" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--neon-cyan);"><line x1="12" y1="2" x2="12" y2="6"></line><line x1="12" y1="18" x2="12" y2="22"></line><line x1="4.93" y1="4.93" x2="7.76" y2="7.76"></line><line x1="16.24" y1="16.24" x2="19.07" y2="19.07"></line><line x1="2" y1="12" x2="6" y2="12"></line><line x1="18" y1="12" x2="22" y2="12"></line><line x1="4.93" y1="19.07" x2="7.76" y2="16.24"></line><line x1="16.24" y1="7.76" x2="19.07" y2="4.93"></line></svg>
+          <span style="margin-top: 8px;">Loading live website preview...</span>
+        </div>
+        <iframe id="preview-iframe" src="" frameborder="0"></iframe>
+      </div>
+    </div>
+  `;
+
+  document.body.appendChild(modal);
+
+  const closeBtn = document.getElementById('preview-close-btn');
+  const macClose = document.getElementById('preview-mac-close');
+  const iframe = document.getElementById('preview-iframe');
+  const loader = document.getElementById('preview-loader-el');
+
+  function closeModal() {
+    modal.classList.remove('open');
+    iframe.src = '';
+  }
+
+  closeBtn.addEventListener('click', closeModal);
+  macClose.addEventListener('click', closeModal);
+
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) closeModal();
+  });
+
+  iframe.addEventListener('load', () => {
+    loader.style.opacity = 0;
+    setTimeout(() => {
+      loader.style.display = 'none';
+    }, 300);
+  });
+}
+
+function openLivePreview(url, title, event) {
+  if (event) {
+    event.preventDefault();
+    event.stopPropagation();
+  }
+
+  const modal = document.getElementById('live-preview-modal');
+  const iframe = document.getElementById('preview-iframe');
+  const loader = document.getElementById('preview-loader-el');
+  const urlText = document.getElementById('preview-url-text');
+  const externalBtn = document.getElementById('preview-external-btn');
+
+  if (!modal || !iframe) return;
+
+  urlText.textContent = url.replace('https://', '');
+  externalBtn.onclick = () => {
+    window.open(url, '_blank');
+  };
+
+  if (loader) {
+    loader.style.display = 'flex';
+    loader.style.opacity = 1;
+  }
+
+  iframe.src = url;
+  modal.classList.add('open');
+}
